@@ -3,7 +3,10 @@ describe('App', () => {
     browser.get('/');
   });
 
-  it('should have a title', () => {
-    expect(browser.getTitle()).toBe('Portfolio');
+  it('should have redirected to `galleries`', function(done) {
+    browser.getCurrentUrl().then((currentUrl: string) => {
+      expect(currentUrl.endsWith('/galleries')).toBe(true);
+      done();
+    });
   });
 });
