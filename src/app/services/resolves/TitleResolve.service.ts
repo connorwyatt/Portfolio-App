@@ -21,7 +21,7 @@ export class TitleResolveService implements Resolve<any> {
       return urlSegment.toString();
     });
 
-    const titleKey = urlSegments.join('-');
+    const titleKey = urlSegments.join('.');
 
     const title = this._getTitle(titleKey);
 
@@ -31,6 +31,17 @@ export class TitleResolveService implements Resolve<any> {
   }
 
   private _getTitle(titleKey: string): string {
-    return TITLES[titleKey] + TITLE_SUFFIX;
+    const title = TITLES[titleKey];
+
+    if (!title) {
+      this._resetTitle();
+      throw new Error(`No title has been defined for the titleKey: '${titleKey}'`);
+    }
+
+    return title + ' - ' + TITLE_SUFFIX;
+  }
+
+  private _resetTitle(): void {
+    this._titleService.setTitle(TITLE_SUFFIX);
   }
 }

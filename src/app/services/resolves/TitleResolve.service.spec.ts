@@ -18,24 +18,52 @@ describe('TitleResolveService', () => {
   });
 
   describe('Method: resolve', () => {
-    let result: string;
+    describe('when there is a title defined', () => {
+      let result: string;
 
-    beforeEach(() => {
-      const route = {
-        url: [
-          { toString: () => 'galleries' }
-        ]
-      };
+      beforeEach(() => {
+        const route = {
+          url: [
+            { toString: () => 'galleries' }
+          ]
+        };
 
-      result = titleResolveService.resolve(<ActivatedRouteSnapshot>route);
+        result = titleResolveService.resolve(<ActivatedRouteSnapshot>route);
+      });
+
+      it('should set the title to the matching title in the constant', () => {
+        expect(titleMock.setTitle).toHaveBeenCalledWith('Galleries - Portfolio');
+      });
+
+      it('should return the titleKey', () => {
+        expect(result).toBe('galleries');
+      });
     });
 
-    it('should set the title to the matching title in the constant', () => {
-      expect(titleMock.setTitle).toHaveBeenCalledWith('Galleries - Portfolio');
-    });
+    describe('when there is not a title defined', () => {
+      let route: {};
 
-    it('should return the titleKey', () => {
-      expect(result).toBe('galleries');
+      beforeEach(() => {
+        route = {
+          url: [
+            { toString: () => 'no-title-defined' }
+          ]
+        };
+      });
+
+      it('should throw an error', () => {
+        expect(() => {
+          titleResolveService.resolve(<ActivatedRouteSnapshot>route);
+        }).toThrowError(`No title has been defined for the titleKey: 'no-title-defined'`);
+      });
+
+      it('should set the title to default title', () => {
+        try {
+          titleResolveService.resolve(<ActivatedRouteSnapshot>route);
+        } catch (e) {}
+
+        expect(titleMock.setTitle).toHaveBeenCalledWith('Portfolio');
+      });
     });
   });
 });
