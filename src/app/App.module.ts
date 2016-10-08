@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './App.component';
 import { GALLERIES_ROUTE } from './routes/galleries/Galleries.route';
+import { NOT_FOUND_ROUTE } from './routes/notFound/NotFound.route';
 import { TitleResolveService } from './services/resolves/TitleResolve.service';
 
 @NgModule({
@@ -10,11 +11,14 @@ import { TitleResolveService } from './services/resolves/TitleResolve.service';
     BrowserModule,
     RouterModule.forRoot([
       GALLERIES_ROUTE,
-      { path: '', redirectTo: GALLERIES_ROUTE.path, pathMatch: 'full' }
+      NOT_FOUND_ROUTE,
+      { path: '', redirectTo: GALLERIES_ROUTE.path, pathMatch: 'full' },
+      { path: '**', redirectTo: NOT_FOUND_ROUTE.path, pathMatch: 'full' }
     ])
   ],
   declarations: [
     GALLERIES_ROUTE.component,
+    NOT_FOUND_ROUTE.component,
     AppComponent
   ],
   providers: [

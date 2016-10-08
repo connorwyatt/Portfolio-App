@@ -1,3 +1,4 @@
 export const TITLES = {
-  'galleries': 'Galleries'
+  'galleries': 'Galleries',
+  'not-found': 'Not Found'
 };
