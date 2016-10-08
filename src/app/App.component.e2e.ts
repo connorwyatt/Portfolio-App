@@ -4,6 +4,6 @@ describe('App', () => {
   });
 
   it('should have a title', () => {
-    expect(browser.getTitle()).toBe('Angular 2 Seed');
+    expect(browser.getTitle()).toBe('Portfolio');
   });
 });
