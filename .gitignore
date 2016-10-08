@@ -3,3 +3,5 @@ dist/
 node_modules/
 typings/index.d.ts
 typings/globals
+
+npm-debug.log
