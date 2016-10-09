@@ -80,7 +80,7 @@ export interface JSONAPIModelResponse<Attributes> {
   meta?: JSONAPIMetaObject;
   jsonapi?: JSONAPIJSONAPIObject;
   links?: JSONAPITopLevelLinks;
-  included?: JSONAPIResourceIdentifierObject[];
+  included?: JSONAPIResourceIdentifierObject<Object>[];
 }
 
 export interface JSONAPICollectionResponse<Attributes> {
@@ -89,5 +89,5 @@ export interface JSONAPICollectionResponse<Attributes> {
   meta?: JSONAPIMetaObject;
   jsonapi?: JSONAPIJSONAPIObject;
   links?: JSONAPITopLevelLinks;
-  included?: JSONAPIResourceIdentifierObject[];
+  included?: JSONAPIResourceIdentifierObject<Object>[];
 }
