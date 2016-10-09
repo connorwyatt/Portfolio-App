@@ -5,6 +5,8 @@ import { AppComponent } from './App.component';
 import { GALLERIES_ROUTE } from './routes/galleries/Galleries.route';
 import { NOT_FOUND_ROUTE } from './routes/notFound/NotFound.route';
 import { TitleResolveService } from './services/resolves/TitleResolve.service';
+import { ENTITIES_TOKEN } from './tokens/ENTITIES.token';
+import { ENTITIES } from './constants/ENTITIES.constant';
 
 @NgModule({
   imports: [
@@ -22,7 +24,8 @@ import { TitleResolveService } from './services/resolves/TitleResolve.service';
     AppComponent
   ],
   providers: [
-    TitleResolveService
+    TitleResolveService,
+    { provide: ENTITIES_TOKEN, useValue: ENTITIES }
   ],
   bootstrap: [AppComponent]
 })
