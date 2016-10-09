@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
 import { APIService } from '../../services/API.service';
 import { Gallery } from '../../entities/Gallery.entity';
 
