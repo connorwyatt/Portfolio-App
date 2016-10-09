@@ -8,7 +8,7 @@ describe('GalleryEntity', () => {
   let gallery: Gallery;
 
   beforeEach(() => {
-    let resource = {
+    let resource: any = {
       attributes: {
         name: 'Main'
       }
