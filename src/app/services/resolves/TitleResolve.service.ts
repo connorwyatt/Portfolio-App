@@ -12,7 +12,7 @@ import { TITLE_SUFFIX } from '../../constants/TITLE_SUFFIX.constant';
 export class TitleResolveService implements Resolve<any> {
   private _titleService: Title;
 
-  constructor(titleService: Title) {
+  constructor(titleService: Title) { // TODO: Inject TITLES and TITLE_SUFFIX into constructor
     this._titleService = titleService
   }
 
