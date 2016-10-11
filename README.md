@@ -1,3 +1,3 @@
-# Angular 2 Seed
+# Portfolio App
 
-An seed project for Angular 2 using Webpack.
+An app for viewing galleries of images.
