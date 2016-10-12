@@ -8,6 +8,8 @@ import { NOT_FOUND_ROUTE } from './routes/notFound/NotFound.route';
 import { TitleResolveService } from './services/resolves/TitleResolve.service';
 import { ENTITIES_TOKEN } from './tokens/ENTITIES.token';
 import { ENTITIES } from './constants/ENTITIES.constant';
+import { TITLES_TOKEN } from './tokens/TITLES.token';
+import { TITLES } from './constants/TITLES.constant';
 import { APIService } from './services/API.service';
 import { ModelService } from './services/Model.service';
 import { GalleriesResolveService } from './routes/galleries/GalleriesResolve.service';
@@ -33,6 +35,7 @@ import { GalleriesResolveService } from './routes/galleries/GalleriesResolve.ser
     GalleriesResolveService,
     APIService,
     ModelService,
+    { provide: TITLES_TOKEN, useValue: TITLES },
     { provide: ENTITIES_TOKEN, useValue: ENTITIES }
   ],
   bootstrap: [AppComponent]

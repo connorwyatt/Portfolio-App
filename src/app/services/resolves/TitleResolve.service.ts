@@ -1,25 +1,28 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Inject
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
   Resolve,
-  ActivatedRouteSnapshot,
-  UrlSegment
+  ActivatedRouteSnapshot
 } from '@angular/router';
 import { TITLES } from '../../constants/TITLES.constant';
-import { TITLE_SUFFIX } from '../../constants/TITLE_SUFFIX.constant';
+import { TITLES_TOKEN } from '../../tokens/TITLES.token';
 
 @Injectable()
 export class TitleResolveService implements Resolve<any> {
   private _titleService: Title;
+  private _titlesConstant: typeof TITLES;
 
-  constructor(titleService: Title) { // TODO: Inject TITLES and TITLE_SUFFIX into constructor
-    this._titleService = titleService
+  constructor(titleService: Title,
+              @Inject(TITLES_TOKEN) titlesConstant: typeof TITLES) {
+    this._titleService = titleService;
+    this._titlesConstant = titlesConstant;
   }
 
   resolve(route: ActivatedRouteSnapshot): string {
-    const urlSegments: string[] = route.url.map((urlSegment: UrlSegment) => {
-      return urlSegment.toString();
-    });
+    const urlSegments = this._getUrlSegments(route);
 
     const titleKey = urlSegments.join('.');
 
@@ -30,18 +33,30 @@ export class TitleResolveService implements Resolve<any> {
     return titleKey;
   }
 
+  private _getUrlSegments(route: ActivatedRouteSnapshot): Array<string> {
+    const pathFromRoot = <Array<ActivatedRouteSnapshot>>route.pathFromRoot;
+
+    return pathFromRoot.reduce((accumulatedValue, routeSegment) => {
+      if (routeSegment.routeConfig && routeSegment.routeConfig.path) {
+        accumulatedValue.push(routeSegment.routeConfig.path);
+      }
+
+      return accumulatedValue;
+    }, []);
+  }
+
   private _getTitle(titleKey: string): string {
-    const title = TITLES[titleKey];
+    const title = this._titlesConstant.titles[titleKey];
 
     if (!title) {
       this._resetTitle();
       throw new Error(`No title has been defined for the titleKey: '${titleKey}'`);
     }
 
-    return title + ' - ' + TITLE_SUFFIX;
+    return title + ' - ' + this._titlesConstant.suffix;
   }
 
   private _resetTitle(): void {
-    this._titleService.setTitle(TITLE_SUFFIX);
+    this._titleService.setTitle(this._titlesConstant.suffix);
   }
 }
