@@ -1,14 +1,8 @@
-import {
-  Inject,
-  Injectable
-} from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import {
-  ActivatedRouteSnapshot,
-  Resolve
-} from '@angular/router';
-import { TITLES } from '../../constants/TITLES.constant';
-import { TITLES_TOKEN } from '../../tokens/TITLES.token';
+import {Inject, Injectable} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
+import {TITLES} from '../../constants/TITLES.constant';
+import {TITLES_TOKEN} from '../../tokens/TITLES.token';
 
 @Injectable()
 export class TitleResolveService implements Resolve<any> {

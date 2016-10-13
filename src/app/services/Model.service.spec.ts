@@ -1,16 +1,12 @@
-import { ENTITIES } from '../constants/ENTITIES.constant';
-import {
-  JSONAPICollectionResponse,
-  JSONAPIModelResponse,
-  JSONAPIResourceIdentifierObject
-} from '../interfaces/JSONAPI';
-import { ModelService } from './Model.service';
+import {ENTITIES} from '../constants/ENTITIES.constant';
+import {JSONAPICollectionResponse, JSONAPIModelResponse, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
+import {ModelService} from './Model.service';
 
 import Spy = jasmine.Spy;
 
 describe('ModelService', () => {
   let modelService: ModelService, entitiesConstant: any, defaultEntityConstructorSpy: Spy,
-    testEntityConstructorSpy: Spy, testEntity2ConstructorSpy: Spy;
+      testEntityConstructorSpy: Spy, testEntity2ConstructorSpy: Spy;
 
   beforeEach(() => {
     defaultEntityConstructorSpy = jasmine.createSpy('defaultEntityConstructor');
@@ -18,17 +14,17 @@ describe('ModelService', () => {
     testEntity2ConstructorSpy = jasmine.createSpy('testEntity2Constructor');
 
     entitiesConstant = {
-      defaultEntity: class DefaultEntity {
+      defaultEntity: class DefaultEntity{
         constructor(data: JSONAPIResourceIdentifierObject<any>) {
           defaultEntityConstructorSpy(data);
         }
       },
-      testEntity: class TestEntity {
+      testEntity: class TestEntity{
         constructor(data: JSONAPIResourceIdentifierObject<any>) {
           testEntityConstructorSpy(data);
         }
       },
-      testEntity2: class TestEntity2 {
+      testEntity2: class TestEntity2{
         constructor(data: JSONAPIResourceIdentifierObject<any>) {
           testEntity2ConstructorSpy(data);
         }
@@ -43,7 +39,7 @@ describe('ModelService', () => {
       let response: any, result: any;
 
       beforeEach(() => {
-        response = { data: { type: 'testEntity' } };
+        response = {data: {type: 'testEntity'}};
 
         result = modelService.createModelFromJSONAPI(<JSONAPIModelResponse<Object>>response);
       });
@@ -61,7 +57,7 @@ describe('ModelService', () => {
       let response: any, result: any;
 
       beforeEach(() => {
-        response = { data: { type: 'entityDoesNotExist' } };
+        response = {data: {type: 'entityDoesNotExist'}};
 
         result = modelService.createModelFromJSONAPI(<JSONAPIModelResponse<Object>>response);
       });
@@ -81,10 +77,10 @@ describe('ModelService', () => {
       let response: any, result: any;
 
       beforeEach(() => {
-        response = { data: [{ type: 'testEntity' }, { type: 'testEntity2' }] };
+        response = {data: [{type: 'testEntity'}, {type: 'testEntity2'}]};
 
         result =
-          modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
+            modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
       });
 
       it('should create new instances of the entities', () => {
@@ -94,7 +90,7 @@ describe('ModelService', () => {
 
       it('should return an array with the new entities', () => {
         expect(result).toEqual(
-          [jasmine.any(entitiesConstant.testEntity), jasmine.any(entitiesConstant.testEntity2)]);
+            [jasmine.any(entitiesConstant.testEntity), jasmine.any(entitiesConstant.testEntity2)]);
       });
     });
 
@@ -102,10 +98,10 @@ describe('ModelService', () => {
       let response: any, result: any;
 
       beforeEach(() => {
-        response = { data: [{ type: 'entityDoesNotExist' }, { type: 'entityDoesNotExist2' }] };
+        response = {data: [{type: 'entityDoesNotExist'}, {type: 'entityDoesNotExist2'}]};
 
         result =
-          modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
+            modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
       });
 
       it('should create new instances of the defaultEntity', () => {

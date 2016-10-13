@@ -1,8 +1,8 @@
-import { Title } from '@angular/platform-browser';
-import { ActivatedRouteSnapshot } from '@angular/router';
-import { TITLES } from '../../constants/TITLES.constant';
-import { TitleMock } from '../../mocks/Title.mock';
-import { TitleResolveService } from './TitleResolve.service';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRouteSnapshot} from '@angular/router';
+import {TITLES} from '../../constants/TITLES.constant';
+import {TitleMock} from '../../mocks/Title.mock';
+import {TitleResolveService} from './TitleResolve.service';
 
 describe('TitleResolveService', () => {
   let titleResolveService: TitleResolveService, titleMock: TitleMock, TITLES_MOCK: any;
@@ -10,7 +10,7 @@ describe('TitleResolveService', () => {
   beforeEach(() => {
     titleMock = new TitleMock();
     TITLES_MOCK = {
-      titles: { 'home': 'Home', 'level1.level2.level3.level4.test': 'Test' },
+      titles: {'home': 'Home', 'level1.level2.level3.level4.test': 'Test'},
       suffix: 'Portfolio'
     };
 
@@ -27,7 +27,7 @@ describe('TitleResolveService', () => {
         let result: string;
 
         beforeEach(() => {
-          const route: {} = { pathFromRoot: [{ routeConfig: { path: 'home' } }] };
+          const route: {} = {pathFromRoot: [{routeConfig: {path: 'home'}}]};
 
           result = titleResolveService.resolve(<ActivatedRouteSnapshot>route);
         });
@@ -47,9 +47,9 @@ describe('TitleResolveService', () => {
         beforeEach(() => {
           const route = {
             pathFromRoot: [
-              { routeConfig: { path: 'level1' } }, { routeConfig: { path: 'level2' } },
-              { routeConfig: { path: 'level3' } }, { routeConfig: { path: 'level4' } },
-              { routeConfig: { path: null } }, {}, { routeConfig: { path: 'test' } }
+              {routeConfig: {path: 'level1'}}, {routeConfig: {path: 'level2'}},
+              {routeConfig: {path: 'level3'}}, {routeConfig: {path: 'level4'}},
+              {routeConfig: {path: null}}, {}, {routeConfig: {path: 'test'}}
             ]
           };
 
@@ -70,7 +70,7 @@ describe('TitleResolveService', () => {
       let route: {};
 
       beforeEach(() => {
-        route = { pathFromRoot: [{ routeConfig: { path: 'no-title-defined' } }] };
+        route = {pathFromRoot: [{routeConfig: {path: 'no-title-defined'}}]};
       });
 
       it('should throw an error', () => {

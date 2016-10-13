@@ -1,4 +1,4 @@
-import { NotFoundComponent } from './NotFound.component';
+import {NotFoundComponent} from './NotFound.component';
 
 describe('NotFoundComponent', () => {
   let notFound: NotFoundComponent;

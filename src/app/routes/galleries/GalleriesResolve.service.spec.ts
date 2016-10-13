@@ -1,11 +1,11 @@
-import { APIService } from '../../services/API.service';
-import { GalleriesResolveService } from './GalleriesResolve.service';
+import {APIService} from '../../services/API.service';
+import {GalleriesResolveService} from './GalleriesResolve.service';
 
 describe('GalleriesResolveService', () => {
   let galleriesResolveService: GalleriesResolveService, apiServiceMock: any;
 
   beforeEach(() => {
-    apiServiceMock = { getCollection: jasmine.createSpy('getCollection') };
+    apiServiceMock = {getCollection: jasmine.createSpy('getCollection')};
 
     galleriesResolveService = new GalleriesResolveService(<APIService>apiServiceMock);
   });

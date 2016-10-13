@@ -1,4 +1,4 @@
-import { JSONAPIResourceIdentifierObject } from '../interfaces/JSONAPI';
+import {JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 
 export class BaseEntity {
   attributes: Object;

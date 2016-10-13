@@ -1,11 +1,8 @@
-import { Http } from '@angular/http';
-import {
-  Observable,
-  Subject
-} from 'rxjs';
-import { HttpMock } from '../mocks/Http.mock';
-import { APIService } from './API.service';
-import { ModelService } from './Model.service';
+import {Http} from '@angular/http';
+import {Observable, Subject} from 'rxjs';
+import {HttpMock} from '../mocks/Http.mock';
+import {APIService} from './API.service';
+import {ModelService} from './Model.service';
 
 import Spy = jasmine.Spy;
 
@@ -54,7 +51,7 @@ describe('APIService', () => {
       beforeEach(() => {
         response = {};
 
-        httpObservable.next({ json: () => response });
+        httpObservable.next({json: () => response});
       });
 
       it('should create a model using the response', () => {
@@ -98,7 +95,7 @@ describe('APIService', () => {
       beforeEach(() => {
         response = [];
 
-        httpObservable.next({ json: () => response });
+        httpObservable.next({json: () => response});
       });
 
       it('should create a collection using the response', () => {
