@@ -1,13 +1,12 @@
-import { GalleriesComponent } from './Galleries.component';
 import { ActivatedRoute } from '@angular/router';
 import {
   Observable,
   Subject
 } from 'rxjs';
+import { GalleriesComponent } from './Galleries.component';
 
 describe('GalleriesComponent', () => {
-  let galleries: GalleriesComponent,
-    route: { data: Observable<{}> },
+  let galleries: GalleriesComponent, route: {data: Observable<{}>},
     routeDataObservable: Subject<{}>;
 
   beforeEach(() => {

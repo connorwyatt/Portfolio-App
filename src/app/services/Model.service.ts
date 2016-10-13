@@ -1,14 +1,14 @@
 import {
-  Injectable,
-  Inject
+  Inject,
+  Injectable
 } from '@angular/core';
+import { ENTITIES } from '../constants/ENTITIES.constant';
+import { BaseEntity } from '../entities/Base.entity';
 import {
   JSONAPICollectionResponse,
   JSONAPIModelResponse,
   JSONAPIResourceIdentifierObject
 } from '../interfaces/JSONAPI';
-import { BaseEntity } from '../entities/Base.entity';
-import { ENTITIES } from '../constants/ENTITIES.constant';
 import { ENTITIES_TOKEN } from '../tokens/ENTITIES.token';
 
 @Injectable()

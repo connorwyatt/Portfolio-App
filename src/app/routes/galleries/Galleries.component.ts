@@ -1,6 +1,6 @@
+import 'rxjs/add/operator/take';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/take';
 import { Gallery } from '../../entities/Gallery.entity';
 
 @Component({
@@ -8,15 +8,15 @@ import { Gallery } from '../../entities/Gallery.entity';
   styles: [require('./Galleries.component.scss')]
 })
 export class GalleriesComponent {
-  get galleries() { return this._galleries; };
+  get galleries() {
+    return this._galleries;
+  };
 
   private _galleries: Gallery[];
 
   constructor(route: ActivatedRoute) {
-    route.data
-      .take(1)
-      .subscribe((data: { galleries: Gallery[] }) => {
-        this._galleries = data.galleries;
-      });
+    route.data.take(1).subscribe((data: {galleries: Gallery[]}) => {
+      this._galleries = data.galleries;
+    });
   }
 }

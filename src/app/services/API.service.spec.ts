@@ -3,15 +3,14 @@ import {
   Observable,
   Subject
 } from 'rxjs';
+import { HttpMock } from '../mocks/Http.mock';
 import { APIService } from './API.service';
 import { ModelService } from './Model.service';
-import { HttpMock } from '../mocks/Http.mock';
+
 import Spy = jasmine.Spy;
 
 describe('APIService', () => {
-  let apiService: APIService,
-    httpMock: any,
-    modelServiceMock: any;
+  let apiService: APIService, httpMock: any, modelServiceMock: any;
 
   beforeEach(() => {
     httpMock = new HttpMock();
@@ -25,14 +24,12 @@ describe('APIService', () => {
   });
 
   describe('Method: getModel', () => {
-    let result: any,
-      httpObservable: Subject<{ json: () => any }>,
-      subscriberSpy: Spy;
+    let result: any, httpObservable: Subject<{json: () => any}>, subscriberSpy: Spy;
 
     beforeEach(() => {
       modelServiceMock.createModelFromJSONAPI.and.returnValue('model');
 
-      httpObservable = new Subject<{ json: () => any }>();
+      httpObservable = new Subject<{json: () => any}>();
 
       subscriberSpy = jasmine.createSpy('subscriber');
 
@@ -57,9 +54,7 @@ describe('APIService', () => {
       beforeEach(() => {
         response = {};
 
-        httpObservable.next({
-          json: () => response
-        });
+        httpObservable.next({ json: () => response });
       });
 
       it('should create a model using the response', () => {
@@ -73,14 +68,12 @@ describe('APIService', () => {
   });
 
   describe('Method: getCollection', () => {
-    let result: any,
-      httpObservable: Subject<{ json: () => any }>,
-      subscriberSpy: Spy;
+    let result: any, httpObservable: Subject<{json: () => any}>, subscriberSpy: Spy;
 
     beforeEach(() => {
       modelServiceMock.createCollectionFromJSONAPI.and.returnValue('collection');
 
-      httpObservable = new Subject<{ json: () => any }>();
+      httpObservable = new Subject<{json: () => any}>();
 
       subscriberSpy = jasmine.createSpy('subscriber');
 
@@ -105,9 +98,7 @@ describe('APIService', () => {
       beforeEach(() => {
         response = [];
 
-        httpObservable.next({
-          json: () => response
-        });
+        httpObservable.next({ json: () => response });
       });
 
       it('should create a collection using the response', () => {

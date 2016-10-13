@@ -1,16 +1,11 @@
-import { BaseEntity } from './Base.entity';
 import { JSONAPIResourceIdentifierObject } from '../interfaces/JSONAPI';
+import { BaseEntity } from './Base.entity';
 
 describe('BaseEntity', () => {
-  let baseEntity: BaseEntity,
-    resource: any;
+  let baseEntity: BaseEntity, resource: any;
 
   beforeEach(() => {
-    resource = {
-      attributes: {
-        name: 'Test Name'
-      }
-    };
+    resource = { attributes: { name: 'Test Name' } };
 
     baseEntity = new BaseEntity(<JSONAPIResourceIdentifierObject<Object>>resource);
   });

@@ -1,18 +1,16 @@
-import { ModelService } from './Model.service';
 import { ENTITIES } from '../constants/ENTITIES.constant';
 import {
+  JSONAPICollectionResponse,
   JSONAPIModelResponse,
-  JSONAPIResourceIdentifierObject,
-  JSONAPICollectionResponse
+  JSONAPIResourceIdentifierObject
 } from '../interfaces/JSONAPI';
+import { ModelService } from './Model.service';
+
 import Spy = jasmine.Spy;
 
 describe('ModelService', () => {
-  let modelService: ModelService,
-    entitiesConstant: any,
-    defaultEntityConstructorSpy: Spy,
-    testEntityConstructorSpy: Spy,
-    testEntity2ConstructorSpy: Spy;
+  let modelService: ModelService, entitiesConstant: any, defaultEntityConstructorSpy: Spy,
+    testEntityConstructorSpy: Spy, testEntity2ConstructorSpy: Spy;
 
   beforeEach(() => {
     defaultEntityConstructorSpy = jasmine.createSpy('defaultEntityConstructor');
@@ -42,15 +40,10 @@ describe('ModelService', () => {
 
   describe('Method: createModelFromJSONAPI', () => {
     describe('when the entity does exist', () => {
-      let response: any,
-        result: any;
+      let response: any, result: any;
 
       beforeEach(() => {
-        response = {
-          data: {
-            type: 'testEntity'
-          }
-        };
+        response = { data: { type: 'testEntity' } };
 
         result = modelService.createModelFromJSONAPI(<JSONAPIModelResponse<Object>>response);
       });
@@ -65,15 +58,10 @@ describe('ModelService', () => {
     });
 
     describe('when the entity does not exist', () => {
-      let response: any,
-        result: any;
+      let response: any, result: any;
 
       beforeEach(() => {
-        response = {
-          data: {
-            type: 'entityDoesNotExist'
-          }
-        };
+        response = { data: { type: 'entityDoesNotExist' } };
 
         result = modelService.createModelFromJSONAPI(<JSONAPIModelResponse<Object>>response);
       });
@@ -90,19 +78,13 @@ describe('ModelService', () => {
 
   describe('Method: createCollectionFromJSONAPI', () => {
     describe('when the entities do exist', () => {
-      let response: any,
-        result: any;
+      let response: any, result: any;
 
       beforeEach(() => {
-        response = {
-          data: [{
-            type: 'testEntity'
-          }, {
-            type: 'testEntity2'
-          }]
-        };
+        response = { data: [{ type: 'testEntity' }, { type: 'testEntity2' }] };
 
-        result = modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
+        result =
+          modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
       });
 
       it('should create new instances of the entities', () => {
@@ -111,27 +93,19 @@ describe('ModelService', () => {
       });
 
       it('should return an array with the new entities', () => {
-        expect(result).toEqual([
-          jasmine.any(entitiesConstant.testEntity),
-          jasmine.any(entitiesConstant.testEntity2)
-        ]);
+        expect(result).toEqual(
+          [jasmine.any(entitiesConstant.testEntity), jasmine.any(entitiesConstant.testEntity2)]);
       });
     });
 
     describe('when the entities do not exist', () => {
-      let response: any,
-        result: any;
+      let response: any, result: any;
 
       beforeEach(() => {
-        response = {
-          data: [{
-            type: 'entityDoesNotExist'
-          }, {
-            type: 'entityDoesNotExist2'
-          }]
-        };
+        response = { data: [{ type: 'entityDoesNotExist' }, { type: 'entityDoesNotExist2' }] };
 
-        result = modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
+        result =
+          modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
       });
 
       it('should create new instances of the defaultEntity', () => {
@@ -141,8 +115,7 @@ describe('ModelService', () => {
 
       it('should return an array of the new entities', () => {
         expect(result).toEqual([
-          jasmine.any(entitiesConstant.defaultEntity),
-          jasmine.any(entitiesConstant.defaultEntity)
+          jasmine.any(entitiesConstant.defaultEntity), jasmine.any(entitiesConstant.defaultEntity)
         ]);
       });
     });

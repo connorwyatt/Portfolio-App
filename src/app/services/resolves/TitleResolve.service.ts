@@ -1,11 +1,11 @@
 import {
-  Injectable,
-  Inject
+  Inject,
+  Injectable
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
-  Resolve,
-  ActivatedRouteSnapshot
+  ActivatedRouteSnapshot,
+  Resolve
 } from '@angular/router';
 import { TITLES } from '../../constants/TITLES.constant';
 import { TITLES_TOKEN } from '../../tokens/TITLES.token';
@@ -15,8 +15,7 @@ export class TitleResolveService implements Resolve<any> {
   private _titleService: Title;
   private _titlesConstant: typeof TITLES;
 
-  constructor(titleService: Title,
-              @Inject(TITLES_TOKEN) titlesConstant: typeof TITLES) {
+  constructor(titleService: Title, @Inject(TITLES_TOKEN) titlesConstant: typeof TITLES) {
     this._titleService = titleService;
     this._titlesConstant = titlesConstant;
   }

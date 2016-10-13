@@ -1,10 +1,10 @@
+import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import {
   Http,
   Response
 } from '@angular/http';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
 import { BaseEntity } from '../entities/Base.entity';
 import { ModelService } from './Model.service';
 
@@ -19,16 +19,14 @@ export class APIService {
   }
 
   getModel(url: string): Observable<BaseEntity> {
-    return this._http.get(url)
-      .map((response: Response) => {
-        return this._modelService.createModelFromJSONAPI(response.json());
-      });
+    return this._http.get(url).map((response: Response) => {
+      return this._modelService.createModelFromJSONAPI(response.json());
+    });
   }
 
   getCollection(url: string): Observable<BaseEntity[]> {
-    return this._http.get(url)
-      .map((response: Response) => {
-        return this._modelService.createCollectionFromJSONAPI(response.json());
-      });
+    return this._http.get(url).map((response: Response) => {
+      return this._modelService.createCollectionFromJSONAPI(response.json());
+    });
   }
 }

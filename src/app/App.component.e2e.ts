@@ -1,2 +1,1 @@
-describe('App', () => {
-});
+describe('App', () => {});

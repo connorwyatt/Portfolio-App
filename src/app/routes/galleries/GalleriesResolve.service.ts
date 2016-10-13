@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import { APIService } from '../../services/API.service';
 import { Gallery } from '../../entities/Gallery.entity';
+import { APIService } from '../../services/API.service';
 
 @Injectable()
 export class GalleriesResolveService implements Resolve<any> {

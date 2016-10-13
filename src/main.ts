@@ -1,7 +1,7 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
-import { AppModule } from './app/App.module';
 import 'style!./styles/styles.scss';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/App.module';
 
 export function main(): Promise<any> {
   return platformBrowserDynamic().bootstrapModule(AppModule);

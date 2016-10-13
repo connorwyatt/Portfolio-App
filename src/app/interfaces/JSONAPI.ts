@@ -12,9 +12,7 @@ export interface JSONAPITopLevelLinks extends JSONAPIPaginationLinks {
   related?: JSONAPILink;
 }
 
-export interface JSONAPILinksObject {
-  [key: string]: JSONAPILink;
-}
+export interface JSONAPILinksObject { [key: string]: JSONAPILink; }
 
 export type JSONAPILink = string | JSONAPILinkObject;
 
@@ -30,13 +28,11 @@ export interface JSONAPIPaginationLinks {
   next?: JSONAPILink;
 }
 
-export interface JSONAPIRelationshipsObject {
-  [key: string]: JSONAPIRelationship;
-}
+export interface JSONAPIRelationshipsObject { [key: string]: JSONAPIRelationship; }
 
 export interface JSONAPIRelationship {
   links?: JSONAPIRelationshipLinks;
-  data?: { [key: string]: any };
+  data?: {[key: string]: any};
   meta?: JSONAPIMetaObject;
 }
 
@@ -45,9 +41,7 @@ export interface JSONAPIRelationshipLinks extends JSONAPIPaginationLinks {
   related?: JSONAPILink;
 }
 
-export interface JSONAPIMetaObject {
-  [key: string]: any;
-}
+export interface JSONAPIMetaObject { [key: string]: any; }
 
 export interface JSONAPIError {
   id?: string;
@@ -60,9 +54,7 @@ export interface JSONAPIError {
   meta?: JSONAPIMetaObject;
 }
 
-export interface JSONAPIErrorLinksObject {
-  about: JSONAPILink;
-}
+export interface JSONAPIErrorLinksObject { about: JSONAPILink; }
 
 export interface JSONAPIErrorSourceObject {
   pointer?: string;
