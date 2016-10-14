@@ -6,6 +6,7 @@ import {ENTITIES_PROVIDER} from './providers/ENTITIES.provider';
 import {TITLES_PROVIDER} from './providers/TITLES.provider';
 import {APIService} from './services/API.service';
 import {ModelService} from './services/Model.service';
+import {TitleService} from './services/Title.service';
 import {AppComponent} from './states/App.component';
 import {AppStates} from './states/App.states';
 import {GalleriesComponent} from './states/galleries/Galleries.component';
@@ -17,7 +18,7 @@ import {NotFoundComponent} from './states/notFound/NotFound.component';
     UIRouterModule.forRoot({states: AppStates, otherwise: {state: 'app', params: {}}})
   ],
   declarations: [AppComponent, GalleriesComponent, NotFoundComponent],
-  providers: [APIService, ModelService, TITLES_PROVIDER, ENTITIES_PROVIDER],
+  providers: [APIService, ModelService, TitleService, TITLES_PROVIDER, ENTITIES_PROVIDER],
   bootstrap: [UIView]
 })
 export class AppModule {
