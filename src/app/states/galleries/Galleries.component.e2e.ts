@@ -3,7 +3,7 @@ describe('Galleries', () => {
     browser.get('/galleries');
   });
 
-  it('should have a title', () => {
+  xit('should have a title', () => {
     expect(browser.getTitle()).toBe('Galleries - Portfolio');
   });
 });

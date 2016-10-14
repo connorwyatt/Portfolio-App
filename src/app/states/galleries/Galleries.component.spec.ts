@@ -1,30 +1,20 @@
-import {ActivatedRoute} from '@angular/router';
-import {Observable, Subject} from 'rxjs';
+import {Gallery} from '../../entities/Gallery.entity';
 import {GalleriesComponent} from './Galleries.component';
 
 describe('GalleriesComponent', () => {
-  let galleries: GalleriesComponent, route: {data: Observable<{}>},
-      routeDataObservable: Subject<{}>;
+  let galleries: GalleriesComponent, galleriesResolve: Array<Gallery>;
 
   beforeEach(() => {
-    routeDataObservable = new Subject<{}>();
+    galleriesResolve = <Array<Gallery>>[{}, {}];
 
-    route = {data: routeDataObservable};
-
-    galleries = new GalleriesComponent(<ActivatedRoute>route);
+    galleries = new GalleriesComponent(galleriesResolve);
   });
 
   it('should be defined', () => {
     expect(galleries).toBeDefined();
   });
 
-  describe('when the route data resolves', () => {
-    beforeEach(() => {
-      routeDataObservable.next({galleries: 'galleries'});
-    });
-
-    it('should set the galleries', () => {
-      expect(galleries.galleries).toBe('galleries');
-    });
+  it('should set the galleries', () => {
+    expect(galleries.galleries).toBe(galleriesResolve);
   });
 });
