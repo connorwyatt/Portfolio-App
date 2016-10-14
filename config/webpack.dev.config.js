@@ -7,7 +7,7 @@ var webpack = require('webpack'),
 module.exports = webpackMerge(commonConfig, {
   debug: true,
 
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
 
   output: {
     path: helpers.root('dist'),
