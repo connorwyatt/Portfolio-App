@@ -1,4 +1,4 @@
 export const TITLES = {
-  titles: {'app.galleries': 'Galleries', 'app.not-found': 'Not Found'},
+  titles: {'galleries': 'Galleries', 'gallery': 'Gallery', 'not-found': 'Not Found'},
   suffix: 'Portfolio'
 };

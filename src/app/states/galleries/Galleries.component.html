@@ -1,5 +1,10 @@
-Galleries
+<h2>Galleries</h2>
 
 <ul>
-  <li *ngFor="let gallery of galleries">{{ gallery.attributes.name }}</li>
+  <li *ngFor="let gallery of galleries">
+    <p><a uiSref="gallery" [uiParams]="{ galleryId: gallery.id }">{{ gallery.attributes.name }}</a>
+    </p>
+  </li>
 </ul>
+
+<ui-view></ui-view>

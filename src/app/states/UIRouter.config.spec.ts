@@ -28,7 +28,7 @@ describe('AppComponent', () => {
     beforeEach(() => {
       const onSuccessCallback = uiRouter.transitionService.onSuccess.calls.argsFor(0)[1];
 
-      onSuccessCallback({targetState: constant({state: constant({parent: 'app', name: 'home'})})});
+      onSuccessCallback({targetState: constant({state: constant({name: 'app.home'})})});
     });
 
     it('should set the title for the state', () => {

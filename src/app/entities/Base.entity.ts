@@ -1,7 +1,9 @@
 import {JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 
 export class BaseEntity {
-  get id(): string { return this._id; }
+  get id(): string {
+    return this._id;
+  }
 
   attributes: Object;
 

@@ -1,5 +1,4 @@
 import {Ng2StateDeclaration} from 'ui-router-ng2';
-
 import {AppComponent} from './App.component';
 import {GalleriesStates} from './galleries/Galleries.states';
 import {NotFoundStates} from './notFound/NotFound.states';

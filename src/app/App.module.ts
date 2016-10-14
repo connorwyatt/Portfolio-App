@@ -10,6 +10,7 @@ import {TitleService} from './services/Title.service';
 import {AppComponent} from './states/App.component';
 import {AppStates} from './states/App.states';
 import {GalleriesComponent} from './states/galleries/Galleries.component';
+import {GalleryComponent} from './states/galleries/gallery/Gallery.component';
 import {NotFoundComponent} from './states/notFound/NotFound.component';
 import {UIRouterConfig} from './states/UIRouter.config';
 
@@ -19,7 +20,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
     UIRouterModule.forRoot(
         {states: AppStates, otherwise: {state: 'app', params: {}}, configClass: UIRouterConfig})
   ],
-  declarations: [AppComponent, GalleriesComponent, NotFoundComponent],
+  declarations: [AppComponent, GalleriesComponent, GalleryComponent, NotFoundComponent],
   providers: [APIService, ModelService, TitleService, TITLES_PROVIDER, ENTITIES_PROVIDER],
   bootstrap: [UIView]
 })
