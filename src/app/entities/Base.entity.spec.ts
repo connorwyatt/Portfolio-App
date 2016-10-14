@@ -5,9 +5,15 @@ describe('BaseEntity', () => {
   let baseEntity: BaseEntity, resource: any;
 
   beforeEach(() => {
-    resource = {attributes: {name: 'Test Name'}};
+    resource = {id: '1', attributes: {name: 'Test Name'}};
 
     baseEntity = new BaseEntity(<JSONAPIResourceIdentifierObject<Object>>resource);
+  });
+
+  describe('id', () => {
+    it('should be the id from the resource', () => {
+      expect(baseEntity.id).toBe(resource.id);
+    });
   });
 
   describe('attributes', () => {
