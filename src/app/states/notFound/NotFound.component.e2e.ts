@@ -3,7 +3,7 @@ describe('NotFound', () => {
     browser.get('/not-found');
   });
 
-  xit('should have a title', () => {
+  it('should have a title', () => {
     expect(browser.getTitle()).toBe('Not Found - Portfolio');
   });
 });

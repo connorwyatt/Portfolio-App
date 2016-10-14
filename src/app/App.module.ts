@@ -11,11 +11,13 @@ import {AppComponent} from './states/App.component';
 import {AppStates} from './states/App.states';
 import {GalleriesComponent} from './states/galleries/Galleries.component';
 import {NotFoundComponent} from './states/notFound/NotFound.component';
+import {UIRouterConfig} from './states/UIRouter.config';
 
 @NgModule({
   imports: [
     BrowserModule, HttpModule,
-    UIRouterModule.forRoot({states: AppStates, otherwise: {state: 'app', params: {}}})
+    UIRouterModule.forRoot(
+        {states: AppStates, otherwise: {state: 'app', params: {}}, configClass: UIRouterConfig})
   ],
   declarations: [AppComponent, GalleriesComponent, NotFoundComponent],
   providers: [APIService, ModelService, TitleService, TITLES_PROVIDER, ENTITIES_PROVIDER],
