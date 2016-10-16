@@ -1,6 +1,8 @@
+import {Injectable} from '@angular/core';
 import {keys} from 'lodash';
 import {JSONAPILink, JSONAPILinkObject, JSONAPILinksObject, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 
+@Injectable()
 export class BaseEntity {
   get id(): string {
     return this._id;
@@ -11,7 +13,7 @@ export class BaseEntity {
   private _id: string;
   private _links: {[key: string]: JSONAPILinkObject};
 
-  constructor(data: JSONAPIResourceIdentifierObject<any>) {
+  initialise(data: JSONAPIResourceIdentifierObject<Object>): void {
     this._id = data.id;
     this.attributes = data.attributes;
     this._links = this._parseLinks(data.links);

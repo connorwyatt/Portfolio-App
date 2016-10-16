@@ -11,7 +11,8 @@ describe('BaseEntity', () => {
       links: {testLink: {href: '/testLink'}, stringLink: '/stringLink'}
     };
 
-    baseEntity = new BaseEntity(<JSONAPIResourceIdentifierObject<Object>>resource);
+    baseEntity = new BaseEntity();
+    baseEntity.initialise(<JSONAPIResourceIdentifierObject<Object>>resource);
   });
 
   describe('id', () => {

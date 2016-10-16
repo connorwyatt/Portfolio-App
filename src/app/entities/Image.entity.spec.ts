@@ -1,13 +1,10 @@
-import {JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
-import {Image, ImageAttributes} from './Image.entity';
+import {Image} from './Image.entity';
 
 describe('ImageEntity', () => {
   let image: Image;
 
   beforeEach(() => {
-    let resource: any = {attributes: {name: 'Main'}};
-
-    image = new Image(<JSONAPIResourceIdentifierObject<ImageAttributes>>resource);
+    image = new Image();
   });
 
   it('should be defined', () => {

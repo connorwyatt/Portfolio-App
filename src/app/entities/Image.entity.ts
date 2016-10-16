@@ -1,15 +1,12 @@
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 import {BaseEntity} from './Base.entity';
 
 export interface ImageAttributes { name: string; }
 
+@Injectable()
 export class Image extends BaseEntity {
   attributes: ImageAttributes;
-
-  constructor(data: JSONAPIResourceIdentifierObject<ImageAttributes>) {
-    super(data);
-  }
 
   getThumbnailImage(): Observable<string> {
     const link = this.getLink('thumbnailImage');

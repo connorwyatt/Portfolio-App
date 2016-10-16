@@ -1,13 +1,10 @@
-import {JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
-import {Gallery, GalleryAttributes} from './Gallery.entity';
+import {Gallery} from './Gallery.entity';
 
 describe('GalleryEntity', () => {
   let gallery: Gallery;
 
   beforeEach(() => {
-    let resource: any = {attributes: {name: 'Main'}};
-
-    gallery = new Gallery(<JSONAPIResourceIdentifierObject<GalleryAttributes>>resource);
+    gallery = new Gallery();
   });
 
   it('should be defined', () => {
