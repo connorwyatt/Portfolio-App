@@ -1,4 +1,4 @@
-import {Injector} from '@angular/core';
+import {Injector, ReflectiveInjector} from '@angular/core';
 import {ENTITIES_CONSTANT} from '../constants/ENTITIES.constant';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {JSONAPICollectionResponse, JSONAPIModelResponse} from '../interfaces/JSONAPI';
@@ -7,13 +7,23 @@ import {ModelService} from './Model.service';
 import Spy = jasmine.Spy;
 
 describe('ModelService', () => {
-  let modelService: ModelService, entityMock: any, injectorMock: any, entitiesConstant: any,
+  let modelService: ModelService, reflectiveInjectorInstanceMock: any, entityMock: any,
+      injectorMock: any, ReflectiveInjectorMock: any, entitiesConstant: any,
       loggingServiceMock: any;
 
   beforeEach(() => {
     entityMock = {initialise: jasmine.createSpy('initialise')};
 
-    injectorMock = {get: jasmine.createSpy('get').and.returnValue(entityMock)};
+    reflectiveInjectorInstanceMock = {
+      resolveAndInstantiate: jasmine.createSpy('resolveAndInstantiate').and.returnValue(entityMock)
+    };
+
+    injectorMock = {};
+
+    ReflectiveInjectorMock = {
+      resolveAndCreate:
+          jasmine.createSpy('resolveAndCreate').and.returnValue(reflectiveInjectorInstanceMock)
+    };
 
     entitiesConstant = {
       defaultEntity: 'defaultEntity',
@@ -24,8 +34,8 @@ describe('ModelService', () => {
     loggingServiceMock = {log: jasmine.createSpy('log')};
 
     modelService = new ModelService(
-        <Injector>injectorMock, <typeof ENTITIES_CONSTANT>entitiesConstant,
-        <LoggingService>loggingServiceMock);
+        <Injector>injectorMock, <typeof ReflectiveInjector>ReflectiveInjectorMock,
+        <typeof ENTITIES_CONSTANT>entitiesConstant, <LoggingService>loggingServiceMock);
   });
 
   describe('Method: createModelFromJSONAPI', () => {
@@ -38,8 +48,14 @@ describe('ModelService', () => {
         result = modelService.createModelFromJSONAPI(<JSONAPIModelResponse<Object>>response);
       });
 
+      it('should resolve and create a new injector', () => {
+        expect(ReflectiveInjectorMock.resolveAndCreate)
+            .toHaveBeenCalledWith(['testEntity'], injectorMock);
+      });
+
       it('should get the specified entity from the injector', () => {
-        expect(injectorMock.get).toHaveBeenCalledWith('testEntity');
+        expect(reflectiveInjectorInstanceMock.resolveAndInstantiate)
+            .toHaveBeenCalledWith('testEntity');
       });
 
       it('should initialise the entity with the response data', () => {
@@ -77,8 +93,14 @@ describe('ModelService', () => {
                 'No Entity Defined');
       });
 
+      it('should resolve and create a new injector', () => {
+        expect(ReflectiveInjectorMock.resolveAndCreate)
+            .toHaveBeenCalledWith(['defaultEntity'], injectorMock);
+      });
+
       it('should get the default entity from the injector', () => {
-        expect(injectorMock.get).toHaveBeenCalledWith('defaultEntity');
+        expect(reflectiveInjectorInstanceMock.resolveAndInstantiate)
+            .toHaveBeenCalledWith('defaultEntity');
       });
 
       it('should initialise the entity with the response data', () => {
@@ -102,9 +124,18 @@ describe('ModelService', () => {
             modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
       });
 
-      it('should get the specified entities from the injector', () => {
-        expect(injectorMock.get).toHaveBeenCalledWith('testEntity');
-        expect(injectorMock.get).toHaveBeenCalledWith('testEntity2');
+      it('should resolve and create new injectors', () => {
+        expect(ReflectiveInjectorMock.resolveAndCreate)
+            .toHaveBeenCalledWith(['testEntity'], injectorMock);
+        expect(ReflectiveInjectorMock.resolveAndCreate)
+            .toHaveBeenCalledWith(['testEntity2'], injectorMock);
+      });
+
+      it('should get the specified entities from the injectors', () => {
+        expect(reflectiveInjectorInstanceMock.resolveAndInstantiate)
+            .toHaveBeenCalledWith('testEntity');
+        expect(reflectiveInjectorInstanceMock.resolveAndInstantiate)
+            .toHaveBeenCalledWith('testEntity2');
       });
 
       it('should initialise the entity with the response data', () => {
@@ -127,9 +158,16 @@ describe('ModelService', () => {
             modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
       });
 
-      it('should get the default entity from the injector', () => {
-        expect(injectorMock.get).toHaveBeenCalledWith('defaultEntity');
-        expect(injectorMock.get).toHaveBeenCalledTimes(2);
+      it('should resolve and create new injectors', () => {
+        expect(ReflectiveInjectorMock.resolveAndCreate)
+            .toHaveBeenCalledWith(['defaultEntity'], injectorMock);
+        expect(ReflectiveInjectorMock.resolveAndCreate).toHaveBeenCalledTimes(2);
+      });
+
+      it('should get the specified entities from the injectors', () => {
+        expect(reflectiveInjectorInstanceMock.resolveAndInstantiate)
+            .toHaveBeenCalledWith('defaultEntity');
+        expect(reflectiveInjectorInstanceMock.resolveAndInstantiate).toHaveBeenCalledTimes(2);
       });
 
       it('should initialise the entity with the response data', () => {

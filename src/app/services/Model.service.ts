@@ -1,22 +1,28 @@
-import {Inject, Injectable, Injector} from '@angular/core';
+import {Inject, Injectable, Injector, ReflectiveInjector} from '@angular/core';
+
 import {ENTITIES_CONSTANT} from '../constants/ENTITIES.constant';
 import {BaseEntity} from '../entities';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {JSONAPICollectionResponse, JSONAPIModelResponse, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 import {ENTITIES_CONSTANT_TOKEN} from '../tokens/ENTITIES_CONSTANT.token';
+import {REFLECTIVE_INJECTOR_TOKEN} from '../tokens/REFLECTIVE_INJECTOR.token';
+
 import {LoggingService} from './Logging.service';
 
 @Injectable()
 export class ModelService {
   private _injector: Injector;
+  private _ReflectiveInjector: typeof ReflectiveInjector;
   private _ENTITIES: typeof ENTITIES_CONSTANT;
   private _loggingService: LoggingService;
 
   constructor(
       injector: Injector,
+      @Inject(REFLECTIVE_INJECTOR_TOKEN) reflectiveInjector: typeof ReflectiveInjector,
       @Inject(ENTITIES_CONSTANT_TOKEN) entitiesConstant: typeof ENTITIES_CONSTANT,
       loggingService: LoggingService) {
     this._injector = injector;
+    this._ReflectiveInjector = reflectiveInjector;
     this._ENTITIES = entitiesConstant;
     this._loggingService = loggingService;
   }
@@ -55,7 +61,9 @@ export class ModelService {
               EntityToken = this._ENTITIES.defaultEntity;
     }
 
-    const entity = <BaseEntity>this._injector.get(EntityToken);
+    const injector = this._ReflectiveInjector.resolveAndCreate([EntityToken], this._injector);
+
+    const entity = <BaseEntity>injector.resolveAndInstantiate(EntityToken);
     entity.initialise(resource);
 
     return entity;
