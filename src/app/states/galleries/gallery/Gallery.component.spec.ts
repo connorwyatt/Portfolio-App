@@ -1,13 +1,15 @@
 import {Gallery} from '../../../entities/Gallery.entity';
 import {GalleryComponent} from './Gallery.component';
+import {Image} from '../../../entities/Image.entity';
 
 describe('GalleryComponent', () => {
-  let gallery: GalleryComponent, galleryResolve: any;
+  let gallery: GalleryComponent, galleryResolve: any, imagesResolve: any;
 
   beforeEach(() => {
     galleryResolve = {};
+    imagesResolve = [];
 
-    gallery = new GalleryComponent(<Gallery>galleryResolve);
+    gallery = new GalleryComponent(<Gallery>galleryResolve, <Array<Image>>imagesResolve);
   });
 
   it('should be defined', () => {
@@ -16,5 +18,9 @@ describe('GalleryComponent', () => {
 
   it('should set the gallery', () => {
     expect(gallery.gallery).toBe(galleryResolve);
+  });
+
+  it('should set the images', () => {
+    expect(gallery.images).toBe(imagesResolve);
   });
 });

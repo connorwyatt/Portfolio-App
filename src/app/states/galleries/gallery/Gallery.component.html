@@ -1,3 +1,9 @@
 <h2>Gallery {{ gallery.id }}</h2>
 
 <p>{{ gallery.attributes.name }}</p>
+
+<div *ngFor="let image of images">
+  <p>{{ image.attributes.name }}</p>
+
+  <img [attr.src]="image.getThumbnailImage() | async"/>
+</div>

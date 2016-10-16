@@ -1,4 +1,5 @@
 import {Component, Inject} from '@angular/core';
+import {BaseEntity} from '../../../entities/Base.entity';
 import {Gallery} from '../../../entities/Gallery.entity';
 
 @Component(
@@ -8,9 +9,15 @@ export class GalleryComponent {
     return this._gallery;
   }
 
-  private _gallery: Gallery;
+  get images(): Array<BaseEntity> {
+    return this._images;
+  }
 
-  constructor(@Inject('gallery') gallery: Gallery) {
+  private _gallery: Gallery;
+  private _images: Array<BaseEntity>;
+
+  constructor(@Inject('gallery') gallery: Gallery, @Inject('images') images: Array<BaseEntity>) {
     this._gallery = gallery;
+    this._images = images;
   }
 }
