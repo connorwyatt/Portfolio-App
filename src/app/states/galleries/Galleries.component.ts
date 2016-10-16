@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {Gallery} from '../../entities/Gallery.entity';
+import {Gallery} from '../../entities';
 
 @Component({
   template: require('./Galleries.component.html'),

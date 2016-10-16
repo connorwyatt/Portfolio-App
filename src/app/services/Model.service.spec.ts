@@ -35,8 +35,8 @@ describe('ModelService', () => {
 
     loggingServiceMock = {log: jasmine.createSpy('log')};
 
-    modelService =
-        new ModelService(<typeof ENTITIES_CONSTANT>entitiesConstant, <LoggingService>loggingServiceMock);
+    modelService = new ModelService(
+        <typeof ENTITIES_CONSTANT>entitiesConstant, <LoggingService>loggingServiceMock);
   });
 
   describe('Method: createModelFromJSONAPI', () => {

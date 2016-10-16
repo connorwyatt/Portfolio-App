@@ -1,6 +1,4 @@
-import {BaseEntity} from '../entities/Base.entity';
-import {Gallery} from '../entities/Gallery.entity';
-import {Image} from '../entities/Image.entity';
+import {BaseEntity, Gallery, Image} from '../entities';
 
 export const ENTITIES_CONSTANT = {
   defaultEntity: BaseEntity,

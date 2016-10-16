@@ -2,7 +2,7 @@ import 'rxjs/add/operator/map';
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs';
-import {BaseEntity} from '../entities/Base.entity';
+import {BaseEntity} from '../entities';
 import {EnvService} from './Env.service';
 import {ModelService} from './Model.service';
 

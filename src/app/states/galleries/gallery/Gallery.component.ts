@@ -1,6 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {BaseEntity} from '../../../entities/Base.entity';
-import {Gallery} from '../../../entities/Gallery.entity';
+import {BaseEntity, Gallery} from '../../../entities';
 
 @Component(
     {template: require('./Gallery.component.html'), styles: [require('./Gallery.component.scss')]})

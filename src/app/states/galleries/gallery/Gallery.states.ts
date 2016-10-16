@@ -1,5 +1,5 @@
 import {Ng2StateDeclaration, Transition} from 'ui-router-ng2';
-import {Gallery} from '../../../entities/Gallery.entity';
+import {Gallery} from '../../../entities';
 import {APIService} from '../../../services/API.service';
 import {GalleryComponent} from './Gallery.component';
 
