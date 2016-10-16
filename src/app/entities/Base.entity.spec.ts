@@ -5,7 +5,11 @@ describe('BaseEntity', () => {
   let baseEntity: BaseEntity, resource: any;
 
   beforeEach(() => {
-    resource = {id: '1', attributes: {name: 'Test Name'}, links: {testLink: {href: '/test'}}};
+    resource = {
+      id: '1',
+      attributes: {name: 'Test Name'},
+      links: {testLink: {href: '/testLink'}, stringLink: '/stringLink'}
+    };
 
     baseEntity = new BaseEntity(<JSONAPIResourceIdentifierObject<Object>>resource);
   });
@@ -23,14 +27,28 @@ describe('BaseEntity', () => {
   });
 
   describe('Method: getLink', () => {
-    let result: any;
+    describe('when getting a link that was a link object in the response', () => {
+      let result: any;
 
-    beforeEach(() => {
-      result = baseEntity.getLink('testLink');
+      beforeEach(() => {
+        result = baseEntity.getLink('testLink');
+      });
+
+      it('should return the link object with the name passed in', () => {
+        expect(result).toBe(resource.links.testLink);
+      });
     });
 
-    it('should return the link with the name passed in', () => {
-      expect(result).toBe(resource.links.testLink);
+    describe('when getting a link that was a string in the response', () => {
+      let result: any;
+
+      beforeEach(() => {
+        result = baseEntity.getLink('stringLink');
+      });
+
+      it('should return the link object with the name passed in', () => {
+        expect(result).toEqual({href: resource.links.stringLink});
+      });
     });
   });
 });
