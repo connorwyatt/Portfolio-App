@@ -1,5 +1,5 @@
 import {Ng2StateDeclaration, Transition} from 'ui-router-ng2';
-import {Gallery} from '../../../entities';
+import {Gallery, Image} from '../../../entities';
 import {APIService} from '../../../services/API.service';
 import {GalleryComponent} from './Gallery.component';
 
@@ -12,7 +12,7 @@ export const GalleryState: Ng2StateDeclaration = {
     {
       token: 'gallery',
       deps: [Transition, 'galleries'],
-      resolveFn: (transition: Transition, galleries: Array<Gallery>) => {
+      resolveFn: (transition: Transition, galleries: Array<Gallery>): Gallery => {
         return galleries.find((gallery: Gallery) => {
           return gallery.id === transition.params('to')['galleryId'];
         });
@@ -21,9 +21,10 @@ export const GalleryState: Ng2StateDeclaration = {
     {
       token: 'images',
       deps: [Transition, 'gallery', APIService],
-      resolveFn: (transition: Transition, gallery: Gallery, apiService: APIService) => {
-        return apiService.getCollection(gallery.getLink('images').href).toPromise();
-      }
+      resolveFn: (transition: Transition, gallery: Gallery, apiService: APIService):
+                     Promise<Array<Image>> => {
+                       return apiService.getCollection(gallery.getLink('images').href).toPromise();
+                     }
     }
   ]
 };

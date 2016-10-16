@@ -1,5 +1,6 @@
 import 'rxjs/add/operator/toPromise';
 import {Ng2StateDeclaration} from 'ui-router-ng2';
+import {Gallery} from '../../entities';
 import {APIService} from '../../services/API.service';
 import {GalleriesComponent} from './Galleries.component';
 import {GalleryStates} from './gallery/Gallery.states';
@@ -12,7 +13,7 @@ export const GalleriesState: Ng2StateDeclaration = {
   resolve: [{
     token: 'galleries',
     deps: [APIService],
-    resolveFn: (apiService: APIService) => {
+    resolveFn: (apiService: APIService): Promise<Array<Gallery>> => {
       return apiService.getCollection('/galleries').toPromise();
     }
   }]
