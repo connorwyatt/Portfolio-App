@@ -1,4 +1,4 @@
-import {ENTITIES} from '../constants/ENTITIES.constant';
+import {ENTITIES_CONSTANT} from '../constants/ENTITIES.constant';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {JSONAPICollectionResponse, JSONAPIModelResponse, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 import {LoggingService} from './Logging.service';
@@ -36,7 +36,7 @@ describe('ModelService', () => {
     loggingServiceMock = {log: jasmine.createSpy('log')};
 
     modelService =
-        new ModelService(<typeof ENTITIES>entitiesConstant, <LoggingService>loggingServiceMock);
+        new ModelService(<typeof ENTITIES_CONSTANT>entitiesConstant, <LoggingService>loggingServiceMock);
   });
 
   describe('Method: createModelFromJSONAPI', () => {

@@ -1,18 +1,18 @@
 import {Inject, Injectable} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {TITLES} from '../constants/TITLES.constant';
+import {TITLES_CONSTANT} from '../constants/TITLES.constant';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
-import {TITLES_TOKEN} from '../tokens/TITLES.token';
+import {TITLES_CONSTANT_TOKEN} from '../tokens/TITLES_CONSTANT.token';
 import {LoggingService} from './Logging.service';
 
 @Injectable()
 export class TitleService {
   private _titleService: Title;
-  private _titlesConstant: typeof TITLES;
+  private _titlesConstant: typeof TITLES_CONSTANT;
   private _loggingService: LoggingService;
 
   constructor(
-      titleService: Title, @Inject(TITLES_TOKEN) titlesConstant: typeof TITLES,
+      titleService: Title, @Inject(TITLES_CONSTANT_TOKEN) titlesConstant: typeof TITLES_CONSTANT,
       loggingService: LoggingService) {
     this._titleService = titleService;
     this._titlesConstant = titlesConstant;

@@ -1,18 +1,19 @@
 import {Inject, Injectable} from '@angular/core';
-import {ENTITIES} from '../constants/ENTITIES.constant';
+import {ENTITIES_CONSTANT} from '../constants/ENTITIES.constant';
 import {BaseEntity} from '../entities/Base.entity';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {JSONAPICollectionResponse, JSONAPIModelResponse, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
-import {ENTITIES_TOKEN} from '../tokens/ENTITIES.token';
+import {ENTITIES_CONSTANT_TOKEN} from '../tokens/ENTITIES_CONSTANT.token';
 import {LoggingService} from './Logging.service';
 
 @Injectable()
 export class ModelService {
-  private _ENTITIES: typeof ENTITIES;
+  private _ENTITIES: typeof ENTITIES_CONSTANT;
   private _loggingService: LoggingService;
 
   constructor(
-      @Inject(ENTITIES_TOKEN) entitiesConstant: typeof ENTITIES, loggingService: LoggingService) {
+      @Inject(ENTITIES_CONSTANT_TOKEN) entitiesConstant: typeof ENTITIES_CONSTANT,
+      loggingService: LoggingService) {
     this._ENTITIES = entitiesConstant;
     this._loggingService = loggingService;
   }

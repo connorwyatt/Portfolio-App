@@ -1,5 +1,5 @@
 import {Title} from '@angular/platform-browser';
-import {TITLES} from '../constants/TITLES.constant';
+import {TITLES_CONSTANT} from '../constants/TITLES.constant';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {TitleMock} from '../mocks/Title.mock';
 import {LoggingService} from './Logging.service';
@@ -14,7 +14,7 @@ describe('TitleService', () => {
     loggingServiceMock = {log: jasmine.createSpy('log')};
 
     titleService = new TitleService(
-        <Title>titleMock, <typeof TITLES>TITLES_MOCK, <LoggingService>loggingServiceMock);
+        <Title>titleMock, <typeof TITLES_CONSTANT>TITLES_MOCK, <LoggingService>loggingServiceMock);
   });
 
   it('should be defined', () => {

@@ -1,6 +1,6 @@
 import {Gallery} from '../../../entities/Gallery.entity';
-import {GalleryComponent} from './Gallery.component';
 import {Image} from '../../../entities/Image.entity';
+import {GalleryComponent} from './Gallery.component';
 
 describe('GalleryComponent', () => {
   let gallery: GalleryComponent, galleryResolve: any, imagesResolve: any;
