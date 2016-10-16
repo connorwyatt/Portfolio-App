@@ -33,7 +33,8 @@ module.exports = webpackMerge(commonConfig, {
       chunksSortMode: 'dependency'
     }),
     new webpack.DefinePlugin({
-      ENV: JSON.stringify('DEVELOPMENT')
+      ENV: JSON.stringify('DEVELOPMENT'),
+      API_BASE_PATH: JSON.stringify('http://localhost:8081/api')
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'libraries', 'polyfills']

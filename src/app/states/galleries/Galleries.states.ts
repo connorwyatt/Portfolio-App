@@ -13,7 +13,7 @@ export const GalleriesState: Ng2StateDeclaration = {
     token: 'galleries',
     deps: [APIService],
     resolveFn: (apiService: APIService) => {
-      return apiService.getCollection('/api/galleries').toPromise();
+      return apiService.getCollection('/galleries').toPromise();
     }
   }]
 };

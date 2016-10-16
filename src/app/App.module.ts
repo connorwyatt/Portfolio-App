@@ -3,6 +3,7 @@ import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {UIRouterModule, UIView} from 'ui-router-ng2';
 import {ENTITIES_PROVIDER} from './providers/ENTITIES.provider';
+import {ENV_PROVIDER} from './providers/ENV.provider';
 import {TITLES_PROVIDER} from './providers/TITLES.provider';
 import {APIService} from './services/API.service';
 import {ModelService} from './services/Model.service';
@@ -21,7 +22,8 @@ import {UIRouterConfig} from './states/UIRouter.config';
         {states: AppStates, otherwise: {state: 'app', params: {}}, configClass: UIRouterConfig})
   ],
   declarations: [AppComponent, GalleriesComponent, GalleryComponent, NotFoundComponent],
-  providers: [APIService, ModelService, TitleService, TITLES_PROVIDER, ENTITIES_PROVIDER],
+  providers:
+      [APIService, ModelService, TitleService, ENV_PROVIDER, TITLES_PROVIDER, ENTITIES_PROVIDER],
   bootstrap: [UIView]
 })
 export class AppModule {
