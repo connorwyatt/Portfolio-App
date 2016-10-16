@@ -1,12 +1,14 @@
 import {ENTITIES} from '../constants/ENTITIES.constant';
+import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {JSONAPICollectionResponse, JSONAPIModelResponse, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
+import {LoggingService} from './Logging.service';
 import {ModelService} from './Model.service';
-
 import Spy = jasmine.Spy;
 
 describe('ModelService', () => {
-  let modelService: ModelService, entitiesConstant: any, defaultEntityConstructorSpy: Spy,
-      testEntityConstructorSpy: Spy, testEntity2ConstructorSpy: Spy;
+  let modelService: ModelService, entitiesConstant: any, loggingServiceMock: any,
+      defaultEntityConstructorSpy: Spy, testEntityConstructorSpy: Spy,
+      testEntity2ConstructorSpy: Spy;
 
   beforeEach(() => {
     defaultEntityConstructorSpy = jasmine.createSpy('defaultEntityConstructor');
@@ -31,7 +33,10 @@ describe('ModelService', () => {
       }
     };
 
-    modelService = new ModelService(<typeof ENTITIES>entitiesConstant);
+    loggingServiceMock = {log: jasmine.createSpy('log')};
+
+    modelService =
+        new ModelService(<typeof ENTITIES>entitiesConstant, <LoggingService>loggingServiceMock);
   });
 
   describe('Method: createModelFromJSONAPI', () => {
@@ -60,6 +65,23 @@ describe('ModelService', () => {
         response = {data: {type: 'entityDoesNotExist'}};
 
         result = modelService.createModelFromJSONAPI(<JSONAPIModelResponse<Object>>response);
+      });
+
+      it('should log a warning and information about how to fix it', () => {
+        expect(loggingServiceMock.log)
+            .toHaveBeenCalledWith(
+                [
+                  {
+                    type: LoggingMessageTypes.WARN,
+                    message: `No entity defined for 'entityDoesNotExist', using BaseEntity.`
+                  },
+                  {
+                    type: LoggingMessageTypes.INFO,
+                    message:
+                        `To use a custom entity, make sure it is defined for this type ('entityDoesNotExist') in the ENTITIES_CONSTANT.`
+                  }
+                ],
+                'No Entity Defined');
       });
 
       it('should create a new instance of the defaultEntity', () => {
@@ -107,6 +129,38 @@ describe('ModelService', () => {
       it('should create new instances of the defaultEntity', () => {
         expect(defaultEntityConstructorSpy).toHaveBeenCalledWith(response.data[0]);
         expect(defaultEntityConstructorSpy).toHaveBeenCalledWith(response.data[1]);
+      });
+
+      it('should log two warnings and information about how to fix them', () => {
+        expect(loggingServiceMock.log)
+            .toHaveBeenCalledWith(
+                [
+                  {
+                    type: LoggingMessageTypes.WARN,
+                    message: `No entity defined for 'entityDoesNotExist', using BaseEntity.`
+                  },
+                  {
+                    type: LoggingMessageTypes.INFO,
+                    message:
+                        `To use a custom entity, make sure it is defined for this type ('entityDoesNotExist') in the ENTITIES_CONSTANT.`
+                  }
+                ],
+                'No Entity Defined');
+
+        expect(loggingServiceMock.log)
+            .toHaveBeenCalledWith(
+                [
+                  {
+                    type: LoggingMessageTypes.WARN,
+                    message: `No entity defined for 'entityDoesNotExist2', using BaseEntity.`
+                  },
+                  {
+                    type: LoggingMessageTypes.INFO,
+                    message:
+                        `To use a custom entity, make sure it is defined for this type ('entityDoesNotExist2') in the ENTITIES_CONSTANT.`
+                  }
+                ],
+                'No Entity Defined');
       });
 
       it('should return an array of the new entities', () => {

@@ -13,6 +13,7 @@ export class BaseEntity {
   constructor(data: JSONAPIResourceIdentifierObject<any>) {
     this._id = data.id;
     this.attributes = data.attributes;
+    this._links = data.links;
   }
 
   getLink(linkName: string): JSONAPILink {

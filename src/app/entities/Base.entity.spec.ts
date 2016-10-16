@@ -5,7 +5,7 @@ describe('BaseEntity', () => {
   let baseEntity: BaseEntity, resource: any;
 
   beforeEach(() => {
-    resource = {id: '1', attributes: {name: 'Test Name'}, links: {testLink: {href: '/api/test'}}};
+    resource = {id: '1', attributes: {name: 'Test Name'}, links: {testLink: {href: '/test'}}};
 
     baseEntity = new BaseEntity(<JSONAPIResourceIdentifierObject<Object>>resource);
   });

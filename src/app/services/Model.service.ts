@@ -1,15 +1,20 @@
 import {Inject, Injectable} from '@angular/core';
 import {ENTITIES} from '../constants/ENTITIES.constant';
 import {BaseEntity} from '../entities/Base.entity';
+import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {JSONAPICollectionResponse, JSONAPIModelResponse, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 import {ENTITIES_TOKEN} from '../tokens/ENTITIES.token';
+import {LoggingService} from './Logging.service';
 
 @Injectable()
 export class ModelService {
   private _ENTITIES: typeof ENTITIES;
+  private _loggingService: LoggingService;
 
-  constructor(@Inject(ENTITIES_TOKEN) entitiesConstant: typeof ENTITIES) {
+  constructor(
+      @Inject(ENTITIES_TOKEN) entitiesConstant: typeof ENTITIES, loggingService: LoggingService) {
     this._ENTITIES = entitiesConstant;
+    this._loggingService = loggingService;
   }
 
   createModelFromJSONAPI(response: JSONAPIModelResponse<Object>): BaseEntity {
@@ -28,7 +33,20 @@ export class ModelService {
     let EntityClass: typeof BaseEntity = this._ENTITIES[type];
 
     if (!EntityClass) {
-      EntityClass = this._ENTITIES.defaultEntity;
+      this._loggingService.log(
+        [
+          {
+            type: LoggingMessageTypes.WARN,
+            message: `No entity defined for '${type}', using BaseEntity.`
+          },
+          {
+            type: LoggingMessageTypes.INFO,
+            message: `To use a custom entity, make sure it is defined for this type ('${type
+              }') in the ENTITIES_CONSTANT.`
+          }
+        ],
+        'No Entity Defined');
+              EntityClass = this._ENTITIES.defaultEntity;
     }
 
     return new EntityClass(resource);
