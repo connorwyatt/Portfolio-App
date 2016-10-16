@@ -1,8 +1,6 @@
 import {Http} from '@angular/http';
 import {Observable, Subject} from 'rxjs';
-
 import {HttpMock} from '../mocks/Http.mock';
-
 import {APIService} from './API.service';
 import {EnvService} from './Env.service';
 import {ModelService} from './Model.service';

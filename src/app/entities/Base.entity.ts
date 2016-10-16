@@ -1,4 +1,4 @@
-import {JSONAPILink, JSONAPILinkObject, JSONAPILinksObject, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
+import {JSONAPILink, JSONAPILinksObject, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 
 export class BaseEntity {
   get id(): string {

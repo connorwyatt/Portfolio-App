@@ -1,5 +1,4 @@
 import {Gallery} from '../../../entities/Gallery.entity';
-
 import {GalleryComponent} from './Gallery.component';
 
 describe('GalleryComponent', () => {
