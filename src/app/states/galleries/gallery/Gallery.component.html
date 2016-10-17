@@ -3,7 +3,9 @@
 <p>{{ gallery.attributes.name }}</p>
 
 <div *ngFor="let image of images">
-  <p>{{ image.attributes.name }}</p>
+  <a uiSref="image" [uiParams]="{imageId: image.id}">
+    <p>{{ image.attributes.name }}</p>
 
-  <img [attr.src]="image.getThumbnailImage() | async"/>
+    <img [attr.src]="image.getThumbnailImage() | async"/>
+  </a>
 </div>

@@ -15,6 +15,7 @@ import {AppComponent} from './states/App.component';
 import {AppStates} from './states/App.states';
 import {GalleriesComponent} from './states/galleries/Galleries.component';
 import {GalleryComponent} from './states/galleries/gallery/Gallery.component';
+import {ImageComponent} from './states/galleries/gallery/image/Image.component';
 import {NotFoundComponent} from './states/notFound/NotFound.component';
 import {UIRouterConfig} from './states/UIRouter.config';
 
@@ -24,7 +25,8 @@ import {UIRouterConfig} from './states/UIRouter.config';
     UIRouterModule.forRoot(
         {states: AppStates, otherwise: {state: 'app', params: {}}, configClass: UIRouterConfig})
   ],
-  declarations: [AppComponent, GalleriesComponent, GalleryComponent, NotFoundComponent],
+  declarations:
+      [AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent],
   providers: [
     APIService, ModelService, TitleService, LoggingService, ENV_SERVICE_PROVIDER,
     TITLES_CONSTANT_PROVIDER, ENTITIES_CONSTANT_PROVIDER, CONSOLE_PROVIDER,

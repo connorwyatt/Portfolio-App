@@ -2,6 +2,7 @@ import {Ng2StateDeclaration, Transition} from 'ui-router-ng2';
 import {Gallery, Image} from '../../../entities';
 import {APIService} from '../../../services/API.service';
 import {GalleryComponent} from './Gallery.component';
+import {ImageStates} from './image/Image.states';
 
 export const GalleryState: Ng2StateDeclaration = {
   name: 'gallery',
@@ -29,4 +30,4 @@ export const GalleryState: Ng2StateDeclaration = {
   ]
 };
 
-export const GalleryStates: Array<Ng2StateDeclaration> = [GalleryState];
+export const GalleryStates: Array<Ng2StateDeclaration> = [GalleryState].concat(ImageStates);
