@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {UIRouterModule, UIView} from 'ui-router-ng2';
+import {ImageCardComponent} from './components';
 import {CONSOLE_PROVIDER} from './providers/CONSOLE.provider';
 import {ENTITIES_CONSTANT_PROVIDER} from './providers/ENTITIES_CONSTANT.provider';
 import {ENV_SERVICE_PROVIDER} from './providers/ENV_SERVICE.provider';
@@ -26,7 +27,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
         {states: AppStates, otherwise: {state: 'app', params: {}}, configClass: UIRouterConfig})
   ],
   declarations:
-      [AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent],
+      [AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent, ImageCardComponent],
   providers: [
     APIService, ModelService, TitleService, LoggingService, ENV_SERVICE_PROVIDER,
     TITLES_CONSTANT_PROVIDER, ENTITIES_CONSTANT_PROVIDER, CONSOLE_PROVIDER,

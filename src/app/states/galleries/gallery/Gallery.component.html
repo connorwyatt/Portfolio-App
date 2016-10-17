@@ -2,10 +2,4 @@
 
 <p>{{ gallery.attributes.name }}</p>
 
-<div *ngFor="let image of images">
-  <a uiSref="image" [uiParams]="{imageId: image.id}">
-    <p>{{ image.attributes.name }}</p>
-
-    <img [attr.src]="image.getThumbnailImage() | async"/>
-  </a>
-</div>
+<image-card *ngFor="let image of images" [image]="image"></image-card>
