@@ -31,6 +31,26 @@ describe('ImageEntity', () => {
     });
   });
 
+  describe('Method: getMediumImage', () => {
+    let result: any;
+
+    beforeEach(() => {
+      spyOn(image, 'getLink').and.returnValue({href: ''});
+      result = image.getMediumImage();
+    });
+
+    it('should get the medium link', () => {
+      expect(image.getLink).toHaveBeenCalledWith('mediumImage');
+    });
+
+    it('should return an observable that emits null', (done) => {
+      result.subscribe((data: string) => {
+        expect(data).toBeNull();
+        done();
+      });
+    });
+  });
+
   describe('Method: getOriginalImage', () => {
     let result: any;
 

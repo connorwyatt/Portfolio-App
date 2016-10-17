@@ -2,7 +2,10 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {BaseEntity} from './Base.entity';
 
-export interface ImageAttributes { name: string; }
+export interface ImageAttributes {
+  name: string;
+  description: string;
+}
 
 @Injectable()
 export class Image extends BaseEntity {
@@ -10,6 +13,12 @@ export class Image extends BaseEntity {
 
   getThumbnailImage(): Observable<string> {
     const link = this.getLink('thumbnailImage');
+
+    return this._getImage(link.href);
+  }
+
+  getMediumImage(): Observable<string> {
+    const link = this.getLink('mediumImage');
 
     return this._getImage(link.href);
   }
