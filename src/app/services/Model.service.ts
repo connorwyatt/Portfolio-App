@@ -1,12 +1,10 @@
 import {Inject, Injectable, Injector, ReflectiveInjector} from '@angular/core';
-
 import {ENTITIES_CONSTANT} from '../constants/ENTITIES.constant';
 import {BaseEntity} from '../entities';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {JSONAPICollectionResponse, JSONAPIModelResponse, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 import {ENTITIES_CONSTANT_TOKEN} from '../tokens/ENTITIES_CONSTANT.token';
 import {REFLECTIVE_INJECTOR_TOKEN} from '../tokens/REFLECTIVE_INJECTOR.token';
-
 import {LoggingService} from './Logging.service';
 
 @Injectable()
