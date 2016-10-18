@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
+import {Http, Response, ResponseContentType} from '@angular/http';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {JSONAPILinkObject} from '../interfaces/JSONAPI';
+import {FileService} from '../services/File.service';
 import {BaseEntity} from './Base.entity';
 
 export interface ImageAttributes {
@@ -7,29 +10,65 @@ export interface ImageAttributes {
   description: string;
 }
 
+export interface ImageObject {
+  base64: string;
+  blob: Blob;
+  width: number;
+  height: number;
+}
+
 @Injectable()
 export class Image extends BaseEntity {
   attributes: ImageAttributes;
 
-  getThumbnailImage(): Observable<string> {
+  private _http: Http;
+  private _fileService: FileService;
+  private _imageSubjects: Map<JSONAPILinkObject, BehaviorSubject<ImageObject>>;
+
+  constructor(http: Http, fileService: FileService) {
+    super();
+    this._http = http;
+    this._fileService = fileService;
+    this._imageSubjects = new Map<JSONAPILinkObject, BehaviorSubject<ImageObject>>();
+  }
+
+  getThumbnailImage(): Observable<ImageObject> {
     const link = this.getLink('thumbnailImage');
 
-    return this._getImage(link.href);
+    return this._getImage(link);
   }
 
-  getMediumImage(): Observable<string> {
+  getMediumImage(): Observable<ImageObject> {
     const link = this.getLink('mediumImage');
 
-    return this._getImage(link.href);
+    return this._getImage(link);
   }
 
-  getOriginalImage(): Observable<string> {
+  getOriginalImage(): Observable<ImageObject> {
     const link = this.getLink('originalImage');
 
-    return this._getImage(link.href);
+    return this._getImage(link);
   }
 
-  private _getImage(url: string): Observable<string> {
-    return new BehaviorSubject(null);  // TODO Make request to API and use base64 encoded image
+  private _getImage(link: JSONAPILinkObject): Observable<ImageObject> {
+    if (this._imageSubjects.has(link)) {
+      return this._imageSubjects.get(link);
+    }
+
+    const imageSubject = new BehaviorSubject<ImageObject>(null);
+
+    this._http.get(link.href, {responseType: ResponseContentType.Blob})
+        .subscribe((response: Response) => {
+          const blob = response.blob();
+
+          this._fileService.readFile(blob).subscribe((base64) => {
+            imageSubject.next(
+                {base64, blob, width: link.meta['width'], height: link.meta['height']});
+          });
+        });
+
+    this._imageSubjects.set(link, imageSubject);
+
+    return imageSubject;
   }
 }

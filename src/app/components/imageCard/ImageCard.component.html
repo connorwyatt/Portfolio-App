@@ -1,6 +1,7 @@
 <div class="container">
   <div class="imageContainer">
-    <img class="image" [attr.src]="image.getMediumImage() | async"/>
+    <img class="image"
+         [attr.src]="(image.getMediumImage() | async)?.base64"/>
   </div>
   <div class="informationContainer">
     <h3 class="title"
