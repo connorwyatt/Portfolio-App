@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {Gallery, Image} from '../../../entities';
 
 @Component(
-    {template: require('./Gallery.component.html'), styles: [require('./Gallery.component.scss')]})
+    {selector: 'gallery', template: require('./Gallery.component.html'), styles: [require('./Gallery.component.scss')]})
 export class GalleryComponent {
   get gallery(): Gallery {
     return this._gallery;

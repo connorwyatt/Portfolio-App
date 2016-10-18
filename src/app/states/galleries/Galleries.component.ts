@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {Gallery} from '../../entities';
 
 @Component({
+  selector: 'galleries',
   template: require('./Galleries.component.html'),
   styles: [require('./Galleries.component.scss')]
 })
