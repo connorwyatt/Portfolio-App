@@ -1,6 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-
 import {FILE_READER_TOKEN} from '../tokens/FILE_READER.token';
 
 @Injectable()

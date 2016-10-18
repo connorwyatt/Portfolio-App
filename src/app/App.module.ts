@@ -26,7 +26,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
   imports: [
     BrowserModule, HttpModule,
     UIRouterModule.forRoot(
-      {states: AppStates, otherwise: {state: 'app', params: {}}, configClass: UIRouterConfig})
+        {states: AppStates, otherwise: {state: 'app', params: {}}, configClass: UIRouterConfig})
   ],
   declarations: [
     AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent,
