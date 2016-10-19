@@ -26,6 +26,7 @@
     "@types/lodash": "^4.14.37",
     "angular2-hmr": "0.7.0",
     "core-js": "^2.4.1",
+    "element-resize-detector": "^1.1.9",
     "lodash": "^4.16.4",
     "reset-css": "^2.2.0",
     "rxjs": "^5.0.0-rc.1",

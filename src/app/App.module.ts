@@ -3,7 +3,9 @@ import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {UIRouterModule, UIView} from 'ui-router-ng2';
 import {ImageCardComponent} from './components';
+import {ElementResizeDirective} from './directives/ElementResize.directive';
 import {CONSOLE_PROVIDER} from './providers/CONSOLE.provider';
+import {ELEMENT_RESIZE_DETECTOR_PROVIDER} from './providers/ELEMENT_RESIZE_DETECTOR.provider';
 import {ENTITIES_CONSTANT_PROVIDER} from './providers/ENTITIES_CONSTANT.provider';
 import {ENV_SERVICE_PROVIDER} from './providers/ENV_SERVICE.provider';
 import {FILE_READER_PROVIDER} from './providers/FILE_READER.provider';
@@ -30,12 +32,12 @@ import {UIRouterConfig} from './states/UIRouter.config';
   ],
   declarations: [
     AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent,
-    ImageCardComponent
+    ImageCardComponent, ElementResizeDirective
   ],
   providers: [
     APIService, ModelService, TitleService, FileService, LoggingService, ENV_SERVICE_PROVIDER,
     TITLES_CONSTANT_PROVIDER, ENTITIES_CONSTANT_PROVIDER, CONSOLE_PROVIDER, FILE_READER_PROVIDER,
-    REFLECTIVE_INJECTOR_PROVIDER
+    REFLECTIVE_INJECTOR_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER
   ],
   bootstrap: [UIView]
 })
