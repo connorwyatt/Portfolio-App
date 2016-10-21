@@ -4,6 +4,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {UIRouterModule, UIView} from 'ui-router-ng2';
 import {ImageCardComponent} from './components';
 import {ElementResizeDirective} from './directives/ElementResize.directive';
+import {TileLayoutDirective} from './directives/TileLayout.directive';
+import {TileLayoutChildDirective} from './directives/TileLayoutChild.directive';
 import {CONSOLE_PROVIDER} from './providers/CONSOLE.provider';
 import {ELEMENT_RESIZE_DETECTOR_PROVIDER} from './providers/ELEMENT_RESIZE_DETECTOR.provider';
 import {ENTITIES_CONSTANT_PROVIDER} from './providers/ENTITIES_CONSTANT.provider';
@@ -32,7 +34,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
   ],
   declarations: [
     AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent,
-    ImageCardComponent, ElementResizeDirective
+    ImageCardComponent, ElementResizeDirective, TileLayoutDirective, TileLayoutChildDirective
   ],
   providers: [
     APIService, ModelService, TitleService, FileService, LoggingService, ENV_SERVICE_PROVIDER,
