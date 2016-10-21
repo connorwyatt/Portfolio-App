@@ -2,7 +2,8 @@
 
 <p>{{ gallery.attributes.name }}</p>
 
-<div tileLayout
+<div class="tileContainer"
+     tileLayout
      [tileLayoutColumns]="[{minWidth: 768, columns: 2}, {minWidth: 1024, columns: 3}]"
      [tileLayoutConfig]="{padding: 20}">
   <image-card class="tile"
