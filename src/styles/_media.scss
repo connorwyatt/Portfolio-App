@@ -1,0 +1,13 @@
+$media-tablet-width: 480px;
+$media-ld-width: 768px;
+$media-sd-width: 1024px;
+$media-md-width: 1280px;
+$media-hd-width: 1440px;
+$media-uhd-width: 1920px;
+
+$media-tablet: "min-width: #{$media-tablet-width})";
+$media-ld: "min-width: #{$media-ld-width})";
+$media-sd: "min-width: #{$media-sd-width})";
+$media-md: "min-width: #{$media-md-width})";
+$media-hd: "min-width: #{$media-hd-width})";
+$media-uhd: "min-width: #{$media-uhd-width})";
