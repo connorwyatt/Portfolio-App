@@ -1,0 +1,26 @@
+$font-weights: (
+  'Thin': 100,
+  'Light': 300,
+  'Regular': 400,
+  'Medium': 500,
+  'Bold': 700,
+  'Black': 900
+);
+
+@each $name, $weight in $font-weights {
+  @font-face {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: $weight;
+    src: url('../assets/fonts/roboto/#{$name}.woff') format('woff'),
+    url('../assets/fonts/roboto/#{$name}.woff') format('truetype');
+  }
+
+  @font-face {
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: $weight;
+    src: url('../assets/fonts/roboto/#{$name}Italic.woff') format('woff'),
+    url('../assets/fonts/roboto/#{$name}Italic.woff') format('truetype');
+  }
+}
