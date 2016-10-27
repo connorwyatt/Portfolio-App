@@ -1,4 +1,27 @@
 @import '../../styles/theme';
 
-.App {
+$headerView-height: $grid-size * 6;
+$headerView-height-tablet: $grid-size * 8;
+
+.headerView {
+  display: block;
+  height: $headerView-height;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+
+  @media ($media-tablet) {
+    height: $headerView-height-tablet;
+  }
+}
+
+.mainView {
+  display: block;
+  margin-top: $headerView-height;
+
+  @media ($media-tablet) {
+    margin-top: $headerView-height-tablet;
+  }
 }
