@@ -1,0 +1,11 @@
+@import '../../../styles/theme';
+
+:host {
+  height: 100%;
+}
+
+.container {
+  background-color: transparentize($color-header-background, .02);
+  box-shadow: 0 2px 2px $color-shadow;
+  height: 100%;
+}

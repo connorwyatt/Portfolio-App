@@ -23,6 +23,7 @@ import {AppStates} from './states/App.states';
 import {GalleriesComponent} from './states/galleries/Galleries.component';
 import {GalleryComponent} from './states/galleries/gallery/Gallery.component';
 import {ImageComponent} from './states/galleries/gallery/image/Image.component';
+import {HeaderComponent} from './states/header/Header.component';
 import {NotFoundComponent} from './states/notFound/NotFound.component';
 import {UIRouterConfig} from './states/UIRouter.config';
 
@@ -34,7 +35,8 @@ import {UIRouterConfig} from './states/UIRouter.config';
   ],
   declarations: [
     AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent,
-    ImageCardComponent, ElementResizeDirective, TileLayoutDirective, TileLayoutChildDirective
+    HeaderComponent, ImageCardComponent, ElementResizeDirective, TileLayoutDirective,
+    TileLayoutChildDirective
   ],
   providers: [
     APIService, ModelService, TitleService, FileService, LoggingService, ENV_SERVICE_PROVIDER,

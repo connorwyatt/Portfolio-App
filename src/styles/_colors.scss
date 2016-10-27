@@ -1,4 +1,7 @@
-$color-white: #fcfcfc;
-$color-black: #111111;
+$color-white: #ffffff;
+$color-black: #000000;
 
+$color-shadow: transparentize($color-black, .9);
+
+$color-header-background: $color-white;
 $color-card: $color-white;
