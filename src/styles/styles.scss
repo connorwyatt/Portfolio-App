@@ -1,1 +1,20 @@
-@import '~reset-css/_reset';
+@import '~reset-css/reset';
+@import 'theme';
+
+:root {
+  font-size: 100%;
+}
+
+html {
+  color: $color-font-primary;
+  font-family: Roboto, sans-serif;
+}
+
+body {
+  background-color: $color-background;
+}
+
+a {
+  color: $color-font-primary;
+  text-decoration: none;
+}
