@@ -26,6 +26,7 @@ import {ImageComponent} from './states/galleries/gallery/image/Image.component';
 import {HeaderComponent} from './states/header/Header.component';
 import {NotFoundComponent} from './states/notFound/NotFound.component';
 import {UIRouterConfig} from './states/UIRouter.config';
+import {CwButtonComponent} from './components/cwButton/CwButton.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
   declarations: [
     AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent,
     HeaderComponent, ImageCardComponent, ElementResizeDirective, TileLayoutDirective,
-    TileLayoutChildDirective
+    TileLayoutChildDirective, CwButtonComponent
   ],
   providers: [
     APIService, ModelService, TitleService, FileService, LoggingService, ENV_SERVICE_PROVIDER,
