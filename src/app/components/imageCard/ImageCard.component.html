@@ -8,5 +8,9 @@
         *ngIf="image.attributes.name">{{ image.attributes.name }}</h3>
     <p class="description"
        *ngIf="image.attributes.description">{{ image.attributes.description }}</p>
+    <cw-button modifier="primary"
+               state="image"
+               [stateParams]="{ imageId: image.id }"
+               text="View image"></cw-button>
   </div>
 </div>
