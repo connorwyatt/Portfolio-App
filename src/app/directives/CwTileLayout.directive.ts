@@ -41,7 +41,8 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['tileLayoutConfig']) {
-      this.tileLayoutConfig = Object.assign({}, defaultConfig, changes['tileLayoutConfig'].currentValue);
+      this.tileLayoutConfig =
+          Object.assign({}, defaultConfig, changes['tileLayoutConfig'].currentValue);
     }
   }
 
@@ -71,7 +72,7 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
   }
 
   private positionTiles(
-    tiles: QueryList<CwTileLayoutChildDirective>, width: number, numberOfColumns: number): void {
+      tiles: QueryList<CwTileLayoutChildDirective>, width: number, numberOfColumns: number): void {
     const columnWidth = this.getColumnWidth(width, numberOfColumns, this.tileLayoutConfig.padding);
 
     this.columnHeights =
@@ -83,7 +84,8 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
 
           tile.setPosition({
             width: columnWidth,
-            left: smallestColumnIndex * columnWidth + smallestColumnIndex * this.tileLayoutConfig.padding,
+            left: smallestColumnIndex * columnWidth +
+                smallestColumnIndex * this.tileLayoutConfig.padding,
             top: previousValue[smallestColumnIndex] + topPadding
           });
 

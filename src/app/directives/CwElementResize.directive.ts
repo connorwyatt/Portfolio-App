@@ -15,8 +15,9 @@ export class CwElementResizeDirective implements OnInit {
   private element: HTMLElement;
   private elementResizeDetector: ElementResizeDetector;
 
-  constructor(elementRef: ElementRef,
-              @Inject(elementResizeDetectorMaker) elementResizeDetectorMaker: ElementResizeDetectorMaker) {
+  constructor(
+      elementRef: ElementRef,
+      @Inject(elementResizeDetectorMaker) elementResizeDetectorMaker: ElementResizeDetectorMaker) {
     this.element = elementRef.nativeElement;
     this.elementResizeDetector = elementResizeDetectorMaker({strategy: 'scroll'});
   }

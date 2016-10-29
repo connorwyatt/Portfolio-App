@@ -22,7 +22,7 @@ describe('UIRouterConfig', () => {
 
   it('should register a function as an onSuccess callback for all states', () => {
     expect(uiRouter.transitionService.onSuccess)
-      .toHaveBeenCalledWith({to: '**'}, jasmine.any(Function));
+        .toHaveBeenCalledWith({to: '**'}, jasmine.any(Function));
   });
 
   describe('when the onSuccess callback is called', () => {
