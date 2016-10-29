@@ -3,11 +3,11 @@
 <p>{{ gallery.attributes.name }}</p>
 
 <div class="tileContainer"
-     tileLayout
+     cwTileLayout
      [tileLayoutColumns]="[{minWidth: 768, columns: 2}, {minWidth: 1024, columns: 3}]"
      [tileLayoutConfig]="{padding: 20}">
   <cw-image-card class="tile"
-                 tileLayoutChild
+                 cwTileLayoutChild
                  *ngFor="let image of images"
                  [image]="image"></cw-image-card>
 </div>

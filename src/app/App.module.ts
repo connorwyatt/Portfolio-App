@@ -3,9 +3,9 @@ import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {UIRouterModule} from 'ui-router-ng2';
 import {CwButtonComponent, CwImageCardComponent} from './components';
-import {ElementResizeDirective} from './directives/ElementResize.directive';
-import {TileLayoutDirective} from './directives/TileLayout.directive';
-import {TileLayoutChildDirective} from './directives/TileLayoutChild.directive';
+import {CwElementResizeDirective} from './directives/CwElementResize.directive';
+import {CwTileLayoutDirective} from './directives/CwTileLayout.directive';
+import {CwTileLayoutChildDirective} from './directives/CwTileLayoutChild.directive';
 import {CONSOLE_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER, ENTITIES_CONSTANT_PROVIDER, ENV_SERVICE_PROVIDER, FILE_READER_PROVIDER, REFLECTIVE_INJECTOR_PROVIDER, TITLES_CONSTANT_PROVIDER} from './providers';
 import {APIService} from './services/API.service';
 import {FileService} from './services/File.service';
@@ -29,8 +29,8 @@ import {UIRouterConfig} from './states/UIRouter.config';
   ],
   declarations: [
     CwAppComponent, CwGalleriesComponent, CwGalleryComponent, CwImageComponent, CwNotFoundComponent,
-    CwHeaderComponent, CwImageCardComponent, ElementResizeDirective, TileLayoutDirective,
-    TileLayoutChildDirective, CwButtonComponent
+    CwHeaderComponent, CwImageCardComponent, CwElementResizeDirective, CwTileLayoutDirective,
+    CwTileLayoutChildDirective, CwButtonComponent
   ],
   providers: [
     APIService, ModelService, TitleService, FileService, LoggingService, ENV_SERVICE_PROVIDER,

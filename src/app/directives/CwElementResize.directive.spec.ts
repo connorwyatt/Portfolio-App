@@ -1,9 +1,9 @@
 import {ElementRef} from '@angular/core';
 import {ElementResizeDetectorMaker} from 'element-resize-detector';
-import {ElementResizeDirective} from './ElementResize.directive';
+import {CwElementResizeDirective} from './CwElementResize.directive';
 
-describe('ElementResizeDirective', () => {
-  let elementResize: ElementResizeDirective, nativeElementMock: any, elementRefMock: any,
+describe('CwElementResizeDirective', () => {
+  let cwElementResize: CwElementResizeDirective, nativeElementMock: any, elementRefMock: any,
       elementResizeDetectorMakerMock: any, elementResizeDetectorMock: any;
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('ElementResizeDirective', () => {
     elementResizeDetectorMakerMock =
         jasmine.createSpy('elementResizeDetectorMaker').and.returnValue(elementResizeDetectorMock);
 
-    elementResize = new ElementResizeDirective(
+    cwElementResize = new CwElementResizeDirective(
         <ElementRef>elementRefMock, <ElementResizeDetectorMaker>elementResizeDetectorMakerMock);
   });
 
@@ -23,7 +23,7 @@ describe('ElementResizeDirective', () => {
 
   describe('Method: ngOnInit', () => {
     beforeEach(() => {
-      elementResize.ngOnInit();
+      cwElementResize.ngOnInit();
     });
 
     it('should listen to the element', () => {
@@ -35,7 +35,7 @@ describe('ElementResizeDirective', () => {
       let element: any;
 
       beforeEach(() => {
-        spyOn(elementResize.onResize, 'emit');
+        spyOn(cwElementResize.onResize, 'emit');
 
         const listener: (element: HTMLElement) => void =
             elementResizeDetectorMock.listenTo.calls.argsFor(0)[1];
@@ -46,7 +46,7 @@ describe('ElementResizeDirective', () => {
       });
 
       it('should emit an onResize event', () => {
-        expect(elementResize.onResize.emit).toHaveBeenCalledWith({
+        expect(cwElementResize.onResize.emit).toHaveBeenCalledWith({
           element,
           width: element.offsetWidth,
           height: element.offsetHeight
