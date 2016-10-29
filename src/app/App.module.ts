@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {UIRouterModule} from 'ui-router-ng2';
-import {CwButtonComponent, ImageCardComponent} from './components';
+import {CwButtonComponent, CwImageCardComponent} from './components';
 import {ElementResizeDirective} from './directives/ElementResize.directive';
 import {TileLayoutDirective} from './directives/TileLayout.directive';
 import {TileLayoutChildDirective} from './directives/TileLayoutChild.directive';
@@ -29,7 +29,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
   ],
   declarations: [
     AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent,
-    HeaderComponent, ImageCardComponent, ElementResizeDirective, TileLayoutDirective,
+    HeaderComponent, CwImageCardComponent, ElementResizeDirective, TileLayoutDirective,
     TileLayoutChildDirective, CwButtonComponent
   ],
   providers: [

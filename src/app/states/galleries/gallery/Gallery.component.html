@@ -6,8 +6,8 @@
      tileLayout
      [tileLayoutColumns]="[{minWidth: 768, columns: 2}, {minWidth: 1024, columns: 3}]"
      [tileLayoutConfig]="{padding: 20}">
-  <image-card class="tile"
-              tileLayoutChild
-              *ngFor="let image of images"
-              [image]="image"></image-card>
+  <cw-image-card class="tile"
+                 tileLayoutChild
+                 *ngFor="let image of images"
+                 [image]="image"></cw-image-card>
 </div>
