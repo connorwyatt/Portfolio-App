@@ -4,8 +4,8 @@ import {NotFoundComponent} from './NotFound.component';
 export const NotFoundState: Ng2StateDeclaration = {
   name: 'not-found',
   parent: 'app',
-  url: '/not-found',
-  views: {'main@app': {component: NotFoundComponent}}
+  url: '^/not-found',
+  views: {'main@': {component: NotFoundComponent}}
 };
 
 export const NotFoundStates: Array<Ng2StateDeclaration> = [NotFoundState];

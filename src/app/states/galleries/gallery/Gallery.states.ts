@@ -8,7 +8,7 @@ export const GalleryState: Ng2StateDeclaration = {
   name: 'gallery',
   parent: 'galleries',
   url: '/:galleryId',
-  views: {'main@app': {component: GalleryComponent}},
+  views: {'main@': {component: GalleryComponent}},
   resolve: [
     {
       token: 'gallery',

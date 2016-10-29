@@ -6,7 +6,7 @@ export const ImageState: Ng2StateDeclaration = {
   name: 'image',
   parent: 'gallery',
   url: '/images/:imageId',
-  views: {'main@app': {component: ImageComponent}},
+  views: {'main@': {component: ImageComponent}},
   resolve: [{
     token: 'image',
     deps: [Transition, 'images'],

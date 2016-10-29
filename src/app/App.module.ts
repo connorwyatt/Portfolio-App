@@ -25,7 +25,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
   imports: [
     BrowserModule, HttpModule,
     UIRouterModule.forRoot(
-      {states: AppStates, otherwise: {state: 'app', params: {}}, configClass: UIRouterConfig})
+      {states: AppStates, configClass: UIRouterConfig})
   ],
   declarations: [
     AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent,
@@ -37,7 +37,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
     TITLES_CONSTANT_PROVIDER, ENTITIES_CONSTANT_PROVIDER, CONSOLE_PROVIDER, FILE_READER_PROVIDER,
     REFLECTIVE_INJECTOR_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER
   ],
-  bootstrap: [UIView]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

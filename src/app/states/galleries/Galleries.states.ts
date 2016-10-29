@@ -9,8 +9,8 @@ import {GalleryStates} from './gallery/Gallery.states';
 export const GalleriesState: Ng2StateDeclaration = {
   name: 'galleries',
   parent: 'app',
-  url: '/galleries',
-  views: {'header@app': {component: HeaderComponent}, 'main@app': {component: GalleriesComponent}},
+  url: '^/galleries',
+  views: {'header@': {component: HeaderComponent}, 'main@': {component: GalleriesComponent}},
   resolve: [{
     token: 'galleries',
     deps: [APIService],
