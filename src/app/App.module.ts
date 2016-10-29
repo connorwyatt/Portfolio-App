@@ -12,24 +12,24 @@ import {FileService} from './services/File.service';
 import {LoggingService} from './services/Logging.service';
 import {ModelService} from './services/Model.service';
 import {TitleService} from './services/Title.service';
-import {AppComponent} from './states/App.component';
-import {AppStates} from './states/App.states';
-import {GalleriesComponent} from './states/galleries/Galleries.component';
-import {GalleryComponent} from './states/galleries/gallery/Gallery.component';
-import {ImageComponent} from './states/galleries/gallery/image/Image.component';
-import {HeaderComponent} from './states/header/Header.component';
-import {NotFoundComponent} from './states/notFound/NotFound.component';
+import {CwAppComponent} from './states/CwApp.component';
+import {CwAppStates} from './states/CwApp.states';
+import {CwGalleriesComponent} from './states/cwGalleries/CwGalleries.component';
+import {CwGalleryComponent} from './states/cwGalleries/cwGallery/CwGallery.component';
+import {CwImageComponent} from './states/cwGalleries/cwGallery/cwImage/CwImage.component';
+import {CwHeaderComponent} from './states/cwHeader/CwHeader.component';
+import {CwNotFoundComponent} from './states/cwNotFound/CwNotFound.component';
 import {UIRouterConfig} from './states/UIRouter.config';
 
 @NgModule({
   imports: [
     BrowserModule, HttpModule,
     UIRouterModule.forRoot(
-        {states: AppStates, otherwise: 'not-found', configClass: UIRouterConfig})
+        {states: CwAppStates, otherwise: 'not-found', configClass: UIRouterConfig})
   ],
   declarations: [
-    AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent,
-    HeaderComponent, CwImageCardComponent, ElementResizeDirective, TileLayoutDirective,
+    CwAppComponent, CwGalleriesComponent, CwGalleryComponent, CwImageComponent, CwNotFoundComponent,
+    CwHeaderComponent, CwImageCardComponent, ElementResizeDirective, TileLayoutDirective,
     TileLayoutChildDirective, CwButtonComponent
   ],
   providers: [
@@ -37,7 +37,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
     TITLES_CONSTANT_PROVIDER, ENTITIES_CONSTANT_PROVIDER, CONSOLE_PROVIDER, FILE_READER_PROVIDER,
     REFLECTIVE_INJECTOR_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [CwAppComponent]
 })
 export class AppModule {
 }

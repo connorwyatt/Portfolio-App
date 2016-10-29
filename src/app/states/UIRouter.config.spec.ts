@@ -1,10 +1,9 @@
 import {constant} from 'lodash';
 import {UIRouter} from 'ui-router-ng2';
 import {TitleService} from '../services/Title.service';
-import {AppComponent} from './App.component';
 import {UIRouterConfig} from './UIRouter.config';
 
-describe('AppComponent', () => {
+describe('UIRouterConfig', () => {
   let uiRouterConfig: UIRouterConfig, uiRouter: any, titleService: any;
 
   beforeEach(() => {
@@ -21,7 +20,7 @@ describe('AppComponent', () => {
 
   it('should register a function as an onSuccess callback for all states', () => {
     expect(uiRouter.transitionService.onSuccess)
-        .toHaveBeenCalledWith({to: '**'}, jasmine.any(Function));
+      .toHaveBeenCalledWith({to: '**'}, jasmine.any(Function));
   });
 
   describe('when the onSuccess callback is called', () => {

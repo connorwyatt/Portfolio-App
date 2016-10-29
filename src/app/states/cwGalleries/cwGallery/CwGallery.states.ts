@@ -1,14 +1,14 @@
 import {Ng2StateDeclaration, Transition} from 'ui-router-ng2';
 import {Gallery, Image} from '../../../entities';
 import {APIService} from '../../../services/API.service';
-import {GalleryComponent} from './Gallery.component';
-import {ImageStates} from './image/Image.states';
+import {CwGalleryComponent} from './CwGallery.component';
+import {CwImageStates} from './cwImage/CwImage.states';
 
-export const GalleryState: Ng2StateDeclaration = {
+export const CwGalleryState: Ng2StateDeclaration = {
   name: 'gallery',
   parent: 'galleries',
   url: '/:galleryId',
-  views: {'main@': {component: GalleryComponent}},
+  views: {'main@': {component: CwGalleryComponent}},
   resolve: [
     {
       token: 'gallery',
@@ -30,4 +30,4 @@ export const GalleryState: Ng2StateDeclaration = {
   ]
 };
 
-export const GalleryStates: Array<Ng2StateDeclaration> = [GalleryState].concat(ImageStates);
+export const CwGalleryStates: Array<Ng2StateDeclaration> = [CwGalleryState].concat(CwImageStates);

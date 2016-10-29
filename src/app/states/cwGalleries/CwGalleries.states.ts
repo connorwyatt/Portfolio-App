@@ -2,15 +2,15 @@ import 'rxjs/add/operator/toPromise';
 import {Ng2StateDeclaration} from 'ui-router-ng2';
 import {Gallery} from '../../entities';
 import {APIService} from '../../services/API.service';
-import {HeaderComponent} from '../header/Header.component';
-import {GalleriesComponent} from './Galleries.component';
-import {GalleryStates} from './gallery/Gallery.states';
+import {CwHeaderComponent} from '../cwHeader/CwHeader.component';
+import {CwGalleriesComponent} from './CwGalleries.component';
+import {CwGalleryStates} from './cwGallery/CwGallery.states';
 
-export const GalleriesState: Ng2StateDeclaration = {
+export const CwGalleriesState: Ng2StateDeclaration = {
   name: 'galleries',
   parent: 'app',
   url: '^/galleries',
-  views: {'header@': {component: HeaderComponent}, 'main@': {component: GalleriesComponent}},
+  views: {'header@': {component: CwHeaderComponent}, 'main@': {component: CwGalleriesComponent}},
   resolve: [{
     token: 'galleries',
     deps: [APIService],
@@ -20,4 +20,5 @@ export const GalleriesState: Ng2StateDeclaration = {
   }]
 };
 
-export const GalleriesStates: Array<Ng2StateDeclaration> = [GalleriesState].concat(GalleryStates);
+export const CwGalleriesStates: Array<Ng2StateDeclaration> =
+    [CwGalleriesState].concat(CwGalleryStates);

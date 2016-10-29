@@ -1,12 +1,12 @@
 import {Ng2StateDeclaration, Transition} from 'ui-router-ng2';
 import {Image} from '../../../../entities';
-import {ImageComponent} from './Image.component';
+import {CwImageComponent} from './CwImage.component';
 
-export const ImageState: Ng2StateDeclaration = {
+export const CwImageState: Ng2StateDeclaration = {
   name: 'image',
   parent: 'gallery',
   url: '/images/:imageId',
-  views: {'main@': {component: ImageComponent}},
+  views: {'main@': {component: CwImageComponent}},
   resolve: [{
     token: 'image',
     deps: [Transition, 'images'],
@@ -18,4 +18,4 @@ export const ImageState: Ng2StateDeclaration = {
   }]
 };
 
-export const ImageStates: Array<Ng2StateDeclaration> = [ImageState];
+export const CwImageStates: Array<Ng2StateDeclaration> = [CwImageState];
