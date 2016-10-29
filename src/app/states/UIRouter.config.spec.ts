@@ -4,14 +4,16 @@ import {TitleService} from '../services/Title.service';
 import {UIRouterConfig} from './UIRouter.config';
 
 describe('UIRouterConfig', () => {
-  let uiRouterConfig: UIRouterConfig, uiRouter: any, titleService: any;
+  let uiRouterConfig: UIRouterConfig;
+  let uiRouter: any;
+  let titleService: any;
 
   beforeEach(() => {
     uiRouter = {transitionService: {onSuccess: jasmine.createSpy('onSuccess')}};
 
     titleService = {setTitleForState: jasmine.createSpy('setTitleForState')};
 
-    uiRouterConfig = new UIRouterConfig(<UIRouter>uiRouter, <TitleService>titleService);
+    uiRouterConfig = new UIRouterConfig(uiRouter as UIRouter, titleService as TitleService);
   });
 
   it('should be defined', () => {
