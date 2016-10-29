@@ -20,6 +20,17 @@ module.exports = webpackMerge(commonConfig, {
     port: 8080,
     host: 'localhost',
     historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: {
+          host: 'localhost',
+          port: 8081,
+          protocol: 'http'
+        },
+        changeOrigin: true,
+        pathRewrite: {'^/api' : ''}
+      }
+    },
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
@@ -34,7 +45,7 @@ module.exports = webpackMerge(commonConfig, {
     }),
     new webpack.DefinePlugin({
       ENV: JSON.stringify('DEVELOPMENT'),
-      API_BASE_PATH: JSON.stringify('http://localhost:8081/api')
+      API_BASE_PATH: JSON.stringify('http://localhost:8080/api')
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'libraries', 'polyfills']
