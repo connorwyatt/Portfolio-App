@@ -9,4 +9,4 @@ export const RootState: Ng2StateDeclaration = {
 };
 
 export const AppStates: Array<Ng2StateDeclaration> =
-  [RootState].concat(GalleriesStates, NotFoundStates);
+    [RootState].concat(GalleriesStates, NotFoundStates);

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
-import {UIRouterModule, UIView} from 'ui-router-ng2';
+import {UIRouterModule} from 'ui-router-ng2';
 import {CwButtonComponent, ImageCardComponent} from './components';
 import {ElementResizeDirective} from './directives/ElementResize.directive';
 import {TileLayoutDirective} from './directives/TileLayout.directive';
@@ -25,7 +25,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
   imports: [
     BrowserModule, HttpModule,
     UIRouterModule.forRoot(
-      {states: AppStates, configClass: UIRouterConfig})
+        {states: AppStates, otherwise: 'not-found', configClass: UIRouterConfig})
   ],
   declarations: [
     AppComponent, GalleriesComponent, GalleryComponent, ImageComponent, NotFoundComponent,
