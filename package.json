@@ -2,7 +2,7 @@
   "name": "portfolio-app",
   "version": "0.0.0",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --colors --progress --display-error-details --display-cached --content-base src/",
+    "start": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --content-base src/",
     "test": "karma start --reporters dots",
     "test:watch": "npm run test -- --auto-watch --no-single-run",
     "pree2e": "webdriver-manager update --standalone",
