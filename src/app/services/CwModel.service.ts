@@ -2,7 +2,7 @@ import {Inject, Injectable, Injector, ReflectiveInjector} from '@angular/core';
 import {ENTITIES_CONSTANT} from '../constants/ENTITIES.constant';
 import {BaseEntity} from '../entities';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
-import {JSONAPICollectionResponse, JSONAPIModelResponse, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
+import {IJSONAPICollectionResponse, IJSONAPIModelResponse, IJSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 import {ENTITIES_CONSTANT_TOKEN} from '../tokens/ENTITIES_CONSTANT.token';
 import {REFLECTIVE_INJECTOR_TOKEN} from '../tokens/REFLECTIVE_INJECTOR.token';
 import {CwLoggingService} from './CwLogging.service';
@@ -15,19 +15,19 @@ export class CwModelService {
       @Inject(ENTITIES_CONSTANT_TOKEN) private EntitiesConstant: typeof ENTITIES_CONSTANT,
       private loggingService: CwLoggingService) {}
 
-  public createModelFromJSONAPI(response: JSONAPIModelResponse<Object>): BaseEntity {
+  public createModelFromJSONAPI(response: IJSONAPIModelResponse<Object>): BaseEntity {
     const resource = response.data;
 
     return this._getEntity(resource);
   }
 
-  public createCollectionFromJSONAPI(response: JSONAPICollectionResponse<Object>): BaseEntity[] {
+  public createCollectionFromJSONAPI(response: IJSONAPICollectionResponse<Object>): BaseEntity[] {
     return response.data.map((resource) => {
       return this._getEntity(resource);
     });
   }
 
-  private _getEntity(resource: JSONAPIResourceIdentifierObject<Object>): BaseEntity {
+  private _getEntity(resource: IJSONAPIResourceIdentifierObject<Object>): BaseEntity {
     const type: string = resource.type;
     let EntityToken: typeof BaseEntity = this.EntitiesConstant[type];
 

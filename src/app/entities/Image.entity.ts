@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, ResponseContentType} from '@angular/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {JSONAPILinkObject} from '../interfaces/JSONAPI';
+import {IJSONAPILinkObject} from '../interfaces/JSONAPI';
 import {CwFileService} from '../services';
 import {BaseEntity} from './Base.entity';
 
@@ -23,13 +23,13 @@ export class Image extends BaseEntity {
 
   private _http: Http;
   private _fileService: CwFileService;
-  private _imageSubjects: Map<JSONAPILinkObject, BehaviorSubject<ImageObject>>;
+  private _imageSubjects: Map<IJSONAPILinkObject, BehaviorSubject<ImageObject>>;
 
   constructor(http: Http, fileService: CwFileService) {
     super();
     this._http = http;
     this._fileService = fileService;
-    this._imageSubjects = new Map<JSONAPILinkObject, BehaviorSubject<ImageObject>>();
+    this._imageSubjects = new Map<IJSONAPILinkObject, BehaviorSubject<ImageObject>>();
   }
 
   getThumbnailImage(): Observable<ImageObject> {
@@ -50,7 +50,7 @@ export class Image extends BaseEntity {
     return this._getImage(link);
   }
 
-  private _getImage(link: JSONAPILinkObject): Observable<ImageObject> {
+  private _getImage(link: IJSONAPILinkObject): Observable<ImageObject> {
     if (this._imageSubjects.has(link)) {
       return this._imageSubjects.get(link);
     }

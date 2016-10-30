@@ -1,7 +1,7 @@
 import {Injector, ReflectiveInjector} from '@angular/core';
 import {ENTITIES_CONSTANT} from '../constants/ENTITIES.constant';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
-import {JSONAPICollectionResponse, JSONAPIModelResponse} from '../interfaces/JSONAPI';
+import {IJSONAPICollectionResponse, IJSONAPIModelResponse} from '../interfaces/JSONAPI';
 import {CwLoggingService} from './CwLogging.service';
 import {CwModelService} from './CwModel.service';
 
@@ -49,7 +49,7 @@ describe('CwModelService', () => {
       beforeEach(() => {
         response = {data: {type: 'testEntity'}};
 
-        result = modelService.createModelFromJSONAPI(response as JSONAPIModelResponse<Object>);
+        result = modelService.createModelFromJSONAPI(response as IJSONAPIModelResponse<Object>);
       });
 
       it('should resolve and create a new injector', () => {
@@ -78,7 +78,7 @@ describe('CwModelService', () => {
       beforeEach(() => {
         response = {data: {type: 'entityDoesNotExist'}};
 
-        result = modelService.createModelFromJSONAPI(response as JSONAPIModelResponse<Object>);
+        result = modelService.createModelFromJSONAPI(response as IJSONAPIModelResponse<Object>);
       });
 
       it('should log a warning and information about how to fix it', () => {
@@ -127,7 +127,7 @@ describe('CwModelService', () => {
         response = {data: [{type: 'testEntity'}, {type: 'testEntity2'}]};
 
         result =
-            modelService.createCollectionFromJSONAPI(response as JSONAPICollectionResponse<Object>);
+            modelService.createCollectionFromJSONAPI(response as IJSONAPICollectionResponse<Object>);
       });
 
       it('should resolve and create new injectors', () => {
@@ -162,7 +162,7 @@ describe('CwModelService', () => {
         response = {data: [{type: 'entityDoesNotExist'}, {type: 'entityDoesNotExist2'}]};
 
         result =
-            modelService.createCollectionFromJSONAPI(response as JSONAPICollectionResponse<Object>);
+            modelService.createCollectionFromJSONAPI(response as IJSONAPICollectionResponse<Object>);
       });
 
       it('should resolve and create new injectors', () => {

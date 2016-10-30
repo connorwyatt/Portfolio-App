@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {keys} from 'lodash';
-import {JSONAPILink, JSONAPILinkObject, JSONAPILinksObject, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
+import {IJSONAPILink, IJSONAPILinkObject, IJSONAPILinksObject, IJSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 
 @Injectable()
 export class BaseEntity {
@@ -11,25 +11,25 @@ export class BaseEntity {
   attributes: Object;
 
   private _id: string;
-  private _links: {[key: string]: JSONAPILinkObject};
+  private _links: {[key: string]: IJSONAPILinkObject};
 
-  initialise(data: JSONAPIResourceIdentifierObject<Object>): void {
+  initialise(data: IJSONAPIResourceIdentifierObject<Object>): void {
     this._id = data.id;
     this.attributes = data.attributes;
     this._links = this._parseLinks(data.links);
   }
 
-  getLink(linkName: string): JSONAPILinkObject {
+  getLink(linkName: string): IJSONAPILinkObject {
     return this._links[linkName];
   }
 
-  private _parseLinks(links: JSONAPILinksObject): {[key: string]: JSONAPILinkObject} {
-    const parsedLinks: {[key: string]: JSONAPILinkObject} = {};
+  private _parseLinks(links: IJSONAPILinksObject): {[key: string]: IJSONAPILinkObject} {
+    const parsedLinks: {[key: string]: IJSONAPILinkObject} = {};
     const linkKeys: Array<string> = keys(links);
 
     linkKeys.forEach((linkKey) => {
-      const link: JSONAPILink = links[linkKey];
-      let parsedLink: JSONAPILinkObject;
+      const link: IJSONAPILink = links[linkKey];
+      let parsedLink: IJSONAPILinkObject;
 
       if (typeof link === 'string') {
         parsedLink = {href: link};

@@ -1,4 +1,4 @@
-import {JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
+import {IJSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 import {BaseEntity} from './Base.entity';
 
 describe('BaseEntity', () => {
@@ -12,7 +12,7 @@ describe('BaseEntity', () => {
     };
 
     baseEntity = new BaseEntity();
-    baseEntity.initialise(<JSONAPIResourceIdentifierObject<Object>>resource);
+    baseEntity.initialise(<IJSONAPIResourceIdentifierObject<Object>>resource);
   });
 
   describe('id', () => {
