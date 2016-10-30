@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response, ResponseContentType} from '@angular/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {JSONAPILinkObject} from '../interfaces/JSONAPI';
-import {FileService} from '../services/File.service';
+import {CwFileService} from '../services';
 import {BaseEntity} from './Base.entity';
 
 export interface ImageAttributes {
@@ -22,10 +22,10 @@ export class Image extends BaseEntity {
   attributes: ImageAttributes;
 
   private _http: Http;
-  private _fileService: FileService;
+  private _fileService: CwFileService;
   private _imageSubjects: Map<JSONAPILinkObject, BehaviorSubject<ImageObject>>;
 
-  constructor(http: Http, fileService: FileService) {
+  constructor(http: Http, fileService: CwFileService) {
     super();
     this._http = http;
     this._fileService = fileService;

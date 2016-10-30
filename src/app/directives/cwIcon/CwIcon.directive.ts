@@ -1,5 +1,5 @@
 import {Directive, ElementRef, Input, OnChanges, Renderer, SimpleChanges} from '@angular/core';
-import {CwIconService} from '../../services/CwIcon.service';
+import {CwIconService} from '../../services';
 
 @Directive({selector: '[cwIcon]'})
 export class CwIconDirective implements OnChanges {

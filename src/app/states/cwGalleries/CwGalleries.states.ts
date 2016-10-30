@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/toPromise';
 import {Ng2StateDeclaration} from 'ui-router-ng2';
 import {Gallery} from '../../entities';
-import {APIService} from '../../services/API.service';
+import {CwAPIService} from '../../services';
 import {CwHeaderComponent} from '../cwHeader/CwHeader.component';
 import {CwGalleriesComponent} from './CwGalleries.component';
 import {CwGalleryStates} from './cwGallery/CwGallery.states';
@@ -13,8 +13,8 @@ export const CwGalleriesState: Ng2StateDeclaration = {
   views: {'header@': {component: CwHeaderComponent}, 'main@': {component: CwGalleriesComponent}},
   resolve: [{
     token: 'galleries',
-    deps: [APIService],
-    resolveFn: (apiService: APIService): Promise<Array<Gallery>> => {
+    deps: [CwAPIService],
+    resolveFn: (apiService: CwAPIService): Promise<Array<Gallery>> => {
       return apiService.getCollection('/galleries').toPromise();
     }
   }]

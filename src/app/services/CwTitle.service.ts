@@ -3,33 +3,30 @@ import {Title} from '@angular/platform-browser';
 import {TITLES_CONSTANT} from '../constants/TITLES.constant';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {TITLES_CONSTANT_TOKEN} from '../tokens/TITLES_CONSTANT.token';
-import {LoggingService} from './Logging.service';
+import {CwLoggingService} from './CwLogging.service';
 
 @Injectable()
-export class TitleService {
-  private _titleService: Title;
-  private _titlesConstant: typeof TITLES_CONSTANT;
-  private _loggingService: LoggingService;
-
+export class CwTitleService {
   constructor(
-      titleService: Title, @Inject(TITLES_CONSTANT_TOKEN) titlesConstant: typeof TITLES_CONSTANT,
-      loggingService: LoggingService) {
-    this._titleService = titleService;
-    this._titlesConstant = titlesConstant;
-    this._loggingService = loggingService;
+      private titleService: Title,
+      @Inject(TITLES_CONSTANT_TOKEN) private titlesConstant: typeof TITLES_CONSTANT,
+      private loggingService: CwLoggingService) {
+    this.titleService = titleService;
+    this.titlesConstant = titlesConstant;
+    this.loggingService = loggingService;
   }
 
-  setTitleForState(titleKey: string): void {
+  public setTitleForState(titleKey: string): void {
     const title = this._getTitle(titleKey);
 
-    this._titleService.setTitle(title);
+    this.titleService.setTitle(title);
   }
 
   private _getTitle(titleKey: string): string {
-    const title = this._titlesConstant.titles[titleKey];
+    const title = this.titlesConstant.titles[titleKey];
 
     if (!title) {
-      this._loggingService.log(
+      this.loggingService.log(
         [
           {
             type: LoggingMessageTypes.ERROR,
@@ -43,9 +40,9 @@ export class TitleService {
         ],
         'No Title Defined');
 
-              return this._titlesConstant.suffix;
+              return this.titlesConstant.suffix;
     }
 
-    return title + ' - ' + this._titlesConstant.suffix;
+    return title + ' - ' + this.titlesConstant.suffix;
   }
 }

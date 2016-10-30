@@ -3,34 +3,27 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs';
 import {BaseEntity} from '../entities';
-import {EnvService} from './Env.service';
-import {ModelService} from './Model.service';
+import {CwEnvService} from './CwEnv.service';
+import {CwModelService} from './CwModel.service';
 
 @Injectable()
-export class APIService {
-  private _envService: EnvService;
-  private _http: Http;
-  private _modelService: ModelService;
+export class CwAPIService {
+  constructor(
+      private envService: CwEnvService, private http: Http, private modelService: CwModelService) {}
 
-  constructor(envService: EnvService, http: Http, modelService: ModelService) {
-    this._envService = envService;
-    this._http = http;
-    this._modelService = modelService;
-  }
+  public getModel(url: string): Observable<BaseEntity> {
+    const prefixedUrl = this.envService.apiBasePath + url;
 
-  getModel(url: string): Observable<BaseEntity> {
-    const prefixedUrl = this._envService.apiBasePath + url;
-
-    return this._http.get(prefixedUrl).map((response: Response) => {
-      return this._modelService.createModelFromJSONAPI(response.json());
+    return this.http.get(prefixedUrl).map((response: Response) => {
+      return this.modelService.createModelFromJSONAPI(response.json());
     });
   }
 
-  getCollection(url: string): Observable<BaseEntity[]> {
-    const prefixedUrl = this._envService.apiBasePath + url;
+  public getCollection(url: string): Observable<BaseEntity[]> {
+    const prefixedUrl = this.envService.apiBasePath + url;
 
-    return this._http.get(prefixedUrl).map((response: Response) => {
-      return this._modelService.createCollectionFromJSONAPI(response.json());
+    return this.http.get(prefixedUrl).map((response: Response) => {
+      return this.modelService.createCollectionFromJSONAPI(response.json());
     });
   }
 }

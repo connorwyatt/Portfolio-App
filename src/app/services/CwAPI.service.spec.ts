@@ -1,13 +1,16 @@
 import {Http} from '@angular/http';
 import {Observable, Subject} from 'rxjs';
 import {HttpMock} from '../mocks/Http.mock';
-import {APIService} from './API.service';
-import {EnvService} from './Env.service';
-import {ModelService} from './Model.service';
+import {CwAPIService} from './CwAPI.service';
+import {CwEnvService} from './CwEnv.service';
+import {CwModelService} from './CwModel.service';
 import Spy = jasmine.Spy;
 
-describe('APIService', () => {
-  let apiService: APIService, envServiceMock: any, httpMock: any, modelServiceMock: any;
+describe('CwAPIService', () => {
+  let apiService: CwAPIService;
+  let envServiceMock: any;
+  let httpMock: any;
+  let modelServiceMock: any;
 
   beforeEach(() => {
     envServiceMock = {apiBasePath: 'http://localhost:666/api'};
@@ -19,12 +22,14 @@ describe('APIService', () => {
       createCollectionFromJSONAPI: jasmine.createSpy('createCollectionFromJSONAPI')
     };
 
-    apiService =
-        new APIService(<EnvService>envServiceMock, <Http>httpMock, <ModelService>modelServiceMock);
+    apiService = new CwAPIService(
+        envServiceMock as CwEnvService, httpMock as Http, modelServiceMock as CwModelService);
   });
 
   describe('Method: getModel', () => {
-    let result: any, httpObservable: Subject<{json: () => any}>, subscriberSpy: Spy;
+    let result: any;
+    let httpObservable: Subject<{json: () => any}>;
+    let subscriberSpy: Spy;
 
     beforeEach(() => {
       modelServiceMock.createModelFromJSONAPI.and.returnValue('model');
@@ -68,7 +73,9 @@ describe('APIService', () => {
   });
 
   describe('Method: getCollection', () => {
-    let result: any, httpObservable: Subject<{json: () => any}>, subscriberSpy: Spy;
+    let result: any;
+    let httpObservable: Subject<{json: () => any}>;
+    let subscriberSpy: Spy;
 
     beforeEach(() => {
       modelServiceMock.createCollectionFromJSONAPI.and.returnValue('collection');

@@ -1,25 +1,28 @@
 import {Observable} from 'rxjs';
-import {FileService} from './File.service';
+import {CwFileService} from './CwFile.service';
 import Spy = jasmine.Spy;
 
-describe('FileService', () => {
-  let fileService: FileService, FileReaderMock: any, fileReaderInstanceMock: any;
+describe('CwFileService', () => {
+  let fileService: CwFileService;
+  let FileReaderMock: any;
+  let fileReaderInstanceMock: any;
 
   beforeEach(() => {
     fileReaderInstanceMock = {readAsDataURL: jasmine.createSpy('readAsDataURL')};
 
     FileReaderMock = jasmine.createSpy('FileReaderMock').and.returnValue(fileReaderInstanceMock);
 
-    fileService = new FileService(<typeof FileReader>FileReaderMock);
+    fileService = new CwFileService(FileReaderMock as typeof FileReader);
   });
 
   describe('Method: readFile', () => {
-    let result: Observable<string>, blob: any;
+    let result: Observable<string>;
+    let blob: any;
 
     beforeEach(() => {
       blob = {};
 
-      result = fileService.readFile(<Blob>blob);
+      result = fileService.readFile(blob as Blob);
     });
 
     it('should create a fileReader', () => {
@@ -35,7 +38,8 @@ describe('FileService', () => {
     });
 
     describe('onloadend', () => {
-      let nextSpy: Spy, completeSpy: Spy;
+      let nextSpy: Spy;
+      let completeSpy: Spy;
 
       beforeEach(() => {
         nextSpy = jasmine.createSpy('next');
@@ -56,7 +60,8 @@ describe('FileService', () => {
     });
 
     describe('onerror', () => {
-      let errorSpy: Spy, errorEvent: any;
+      let errorSpy: Spy;
+      let errorEvent: any;
 
       beforeEach(() => {
         errorEvent = {};

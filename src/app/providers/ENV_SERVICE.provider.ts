@@ -1,6 +1,6 @@
-import {EnvService} from '../services/Env.service';
+import {CwEnvService} from '../services';
 
 export const ENV_SERVICE_PROVIDER = {
-  provide: EnvService,
-  useValue: new EnvService(ENV, API_BASE_PATH)
+  provide: CwEnvService,
+  useValue: new CwEnvService(ENV, API_BASE_PATH)
 };

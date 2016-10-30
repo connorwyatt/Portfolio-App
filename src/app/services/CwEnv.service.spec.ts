@@ -1,52 +1,52 @@
-import {EnvService} from './Env.service';
+import {CwEnvService} from './CwEnv.service';
 
-describe('EnvService', () => {
-  let envService: EnvService;
+describe('CwEnvService', () => {
+  let cwEnvService: CwEnvService;
 
-  describe('when development', function() {
+  describe('when development', () => {
     beforeEach(() => {
-      envService = new EnvService('DEVELOPMENT', 'http://localhost:8081/api');
+      cwEnvService = new CwEnvService('DEVELOPMENT', 'http://localhost:8081/api');
     });
 
     describe('Property: isDevelopment', () => {
       it('should return true', () => {
-        expect(envService.isDevelopment).toBe(true);
+        expect(cwEnvService.isDevelopment).toBe(true);
       });
     });
 
     describe('Property: isProduction', () => {
       it('should return false', () => {
-        expect(envService.isProduction).toBe(false);
+        expect(cwEnvService.isProduction).toBe(false);
       });
     });
 
     describe('Property: apiBasePath', () => {
       it('should be the path passed as a constructor argument', () => {
-        expect(envService.apiBasePath).toBe('http://localhost:8081/api');
+        expect(cwEnvService.apiBasePath).toBe('http://localhost:8081/api');
       });
     });
   });
 
-  describe('when production', function() {
+  describe('when production', () => {
     beforeEach(() => {
-      envService = new EnvService('PRODUCTION', 'http://api.server.com');
+      cwEnvService = new CwEnvService('PRODUCTION', 'http://api.server.com');
     });
 
     describe('Property: isDevelopment', () => {
       it('should return false', () => {
-        expect(envService.isDevelopment).toBe(false);
+        expect(cwEnvService.isDevelopment).toBe(false);
       });
     });
 
     describe('Property: isProduction', () => {
       it('should return true', () => {
-        expect(envService.isProduction).toBe(true);
+        expect(cwEnvService.isProduction).toBe(true);
       });
     });
 
     describe('Property: apiBasePath', () => {
       it('should be the path passed as a constructor argument', () => {
-        expect(envService.apiBasePath).toBe('http://api.server.com');
+        expect(cwEnvService.apiBasePath).toBe('http://api.server.com');
       });
     });
   });

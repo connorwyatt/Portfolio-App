@@ -1,6 +1,6 @@
 import {constant} from 'lodash';
 import {UIRouter} from 'ui-router-ng2';
-import {TitleService} from '../services/Title.service';
+import {CwTitleService} from '../services';
 import {UIRouterConfig} from './UIRouter.config';
 
 describe('UIRouterConfig', () => {
@@ -13,7 +13,7 @@ describe('UIRouterConfig', () => {
 
     titleService = {setTitleForState: jasmine.createSpy('setTitleForState')};
 
-    uiRouterConfig = new UIRouterConfig(uiRouter as UIRouter, titleService as TitleService);
+    uiRouterConfig = new UIRouterConfig(uiRouter as UIRouter, titleService as CwTitleService);
   });
 
   it('should be defined', () => {

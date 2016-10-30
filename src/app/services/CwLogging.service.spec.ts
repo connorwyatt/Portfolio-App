@@ -1,10 +1,12 @@
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
-import {EnvService} from './Env.service';
-import {LoggingService} from './Logging.service';
+import {CwEnvService} from './CwEnv.service';
+import {CwLoggingService} from './CwLogging.service';
 
-describe('LoggingService', () => {
-  let loggingService: LoggingService, envServiceMock: any, consoleMock: any,
-      callOrder: Array<string>;
+describe('CwLoggingService', () => {
+  let loggingService: CwLoggingService;
+  let envServiceMock: any;
+  let consoleMock: any;
+  let callOrder: Array<string>;
 
   beforeEach(() => {
     callOrder = [];
@@ -23,7 +25,7 @@ describe('LoggingService', () => {
     beforeEach(() => {
       envServiceMock = {isDevelopment: true};
 
-      loggingService = new LoggingService(<EnvService>envServiceMock, <Console>consoleMock);
+      loggingService = new CwLoggingService(envServiceMock as CwEnvService, consoleMock as Console);
     });
 
     describe('Method: log', () => {
@@ -95,7 +97,7 @@ describe('LoggingService', () => {
     beforeEach(() => {
       envServiceMock = {isDevelopment: false};
 
-      loggingService = new LoggingService(<EnvService>envServiceMock, <Console>consoleMock);
+      loggingService = new CwLoggingService(envServiceMock as CwEnvService, consoleMock as Console);
     });
 
     describe('Method: log', () => {

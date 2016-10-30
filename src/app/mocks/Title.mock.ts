@@ -1,4 +1,4 @@
 export class TitleMock {
-  getTitle = jasmine.createSpy('getTitle');
-  setTitle = jasmine.createSpy('setTitle');
+  public getTitle = jasmine.createSpy('getTitle');
+  public setTitle = jasmine.createSpy('setTitle');
 }

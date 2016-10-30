@@ -2,14 +2,17 @@ import {Injector, ReflectiveInjector} from '@angular/core';
 import {ENTITIES_CONSTANT} from '../constants/ENTITIES.constant';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {JSONAPICollectionResponse, JSONAPIModelResponse} from '../interfaces/JSONAPI';
-import {LoggingService} from './Logging.service';
-import {ModelService} from './Model.service';
-import Spy = jasmine.Spy;
+import {CwLoggingService} from './CwLogging.service';
+import {CwModelService} from './CwModel.service';
 
-describe('ModelService', () => {
-  let modelService: ModelService, reflectiveInjectorInstanceMock: any, entityMock: any,
-      injectorMock: any, ReflectiveInjectorMock: any, entitiesConstant: any,
-      loggingServiceMock: any;
+describe('CwModelService', () => {
+  let modelService: CwModelService;
+  let reflectiveInjectorInstanceMock: any;
+  let entityMock: any;
+  let injectorMock: any;
+  let ReflectiveInjectorMock: any;
+  let entitiesConstant: any;
+  let loggingServiceMock: any;
 
   beforeEach(() => {
     entityMock = {initialise: jasmine.createSpy('initialise')};
@@ -33,19 +36,20 @@ describe('ModelService', () => {
 
     loggingServiceMock = {log: jasmine.createSpy('log')};
 
-    modelService = new ModelService(
-        <Injector>injectorMock, <typeof ReflectiveInjector>ReflectiveInjectorMock,
-        <typeof ENTITIES_CONSTANT>entitiesConstant, <LoggingService>loggingServiceMock);
+    modelService = new CwModelService(
+        injectorMock as Injector, ReflectiveInjectorMock as typeof ReflectiveInjector,
+        entitiesConstant as typeof ENTITIES_CONSTANT, loggingServiceMock as CwLoggingService);
   });
 
   describe('Method: createModelFromJSONAPI', () => {
     describe('when the entity does exist', () => {
-      let response: any, result: any;
+      let response: any;
+      let result: any;
 
       beforeEach(() => {
         response = {data: {type: 'testEntity'}};
 
-        result = modelService.createModelFromJSONAPI(<JSONAPIModelResponse<Object>>response);
+        result = modelService.createModelFromJSONAPI(response as JSONAPIModelResponse<Object>);
       });
 
       it('should resolve and create a new injector', () => {
@@ -68,12 +72,13 @@ describe('ModelService', () => {
     });
 
     describe('when the entity does not exist', () => {
-      let response: any, result: any;
+      let response: any;
+      let result: any;
 
       beforeEach(() => {
         response = {data: {type: 'entityDoesNotExist'}};
 
-        result = modelService.createModelFromJSONAPI(<JSONAPIModelResponse<Object>>response);
+        result = modelService.createModelFromJSONAPI(response as JSONAPIModelResponse<Object>);
       });
 
       it('should log a warning and information about how to fix it', () => {
@@ -115,13 +120,14 @@ describe('ModelService', () => {
 
   describe('Method: createCollectionFromJSONAPI', () => {
     describe('when the entities do exist', () => {
-      let response: any, result: any;
+      let response: any;
+      let result: any;
 
       beforeEach(() => {
         response = {data: [{type: 'testEntity'}, {type: 'testEntity2'}]};
 
         result =
-            modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
+            modelService.createCollectionFromJSONAPI(response as JSONAPICollectionResponse<Object>);
       });
 
       it('should resolve and create new injectors', () => {
@@ -149,13 +155,14 @@ describe('ModelService', () => {
     });
 
     describe('when the entities do not exist', () => {
-      let response: any, result: any;
+      let response: any;
+      let result: any;
 
       beforeEach(() => {
         response = {data: [{type: 'entityDoesNotExist'}, {type: 'entityDoesNotExist2'}]};
 
         result =
-            modelService.createCollectionFromJSONAPI(<JSONAPICollectionResponse<Object>>response);
+            modelService.createCollectionFromJSONAPI(response as JSONAPICollectionResponse<Object>);
       });
 
       it('should resolve and create new injectors', () => {

@@ -2,19 +2,23 @@ import {Title} from '@angular/platform-browser';
 import {TITLES_CONSTANT} from '../constants/TITLES.constant';
 import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {TitleMock} from '../mocks/Title.mock';
-import {LoggingService} from './Logging.service';
-import {TitleService} from './Title.service';
+import {CwLoggingService} from './CwLogging.service';
+import {CwTitleService} from './CwTitle.service';
 
-describe('TitleService', () => {
-  let titleService: TitleService, titleMock: TitleMock, TITLES_MOCK: any, loggingServiceMock: any;
+describe('CwTitleService', () => {
+  let titleService: CwTitleService;
+  let titleMock: TitleMock;
+  let TITLES_MOCK: any;
+  let loggingServiceMock: any;
 
   beforeEach(() => {
     titleMock = new TitleMock();
     TITLES_MOCK = {titles: {'level1.level2.level3.level4.test': 'Test'}, suffix: 'Portfolio'};
     loggingServiceMock = {log: jasmine.createSpy('log')};
 
-    titleService = new TitleService(
-        <Title>titleMock, <typeof TITLES_CONSTANT>TITLES_MOCK, <LoggingService>loggingServiceMock);
+    titleService = new CwTitleService(
+        titleMock as Title, TITLES_MOCK as typeof TITLES_CONSTANT,
+        loggingServiceMock as CwLoggingService);
   });
 
   it('should be defined', () => {

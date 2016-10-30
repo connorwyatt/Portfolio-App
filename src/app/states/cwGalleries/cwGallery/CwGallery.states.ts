@@ -1,6 +1,6 @@
 import {Ng2StateDeclaration, Transition} from 'ui-router-ng2';
 import {Gallery, Image} from '../../../entities';
-import {APIService} from '../../../services/API.service';
+import {CwAPIService} from '../../../services';
 import {CwGalleryComponent} from './CwGallery.component';
 import {CwImageStates} from './cwImage/CwImage.states';
 
@@ -21,8 +21,8 @@ export const CwGalleryState: Ng2StateDeclaration = {
     },
     {
       token: 'images',
-      deps: [Transition, 'gallery', APIService],
-      resolveFn: (transition: Transition, gallery: Gallery, apiService: APIService):
+      deps: [Transition, 'gallery', CwAPIService],
+      resolveFn: (transition: Transition, gallery: Gallery, apiService: CwAPIService):
                      Promise<Array<Image>> => {
                        return apiService.getCollection(gallery.getLink('images').href).toPromise();
                      }

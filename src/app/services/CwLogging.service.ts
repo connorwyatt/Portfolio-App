@@ -3,20 +3,14 @@ import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {IConsole} from '../interfaces/IConsole';
 import {ILoggingMessage} from '../interfaces/ILoggingMessage';
 import {CONSOLE_TOKEN} from '../tokens/CONSOLE.token';
-import {EnvService} from './Env.service';
+import {CwEnvService} from './CwEnv.service';
 
 @Injectable()
-export class LoggingService {
-  private _shouldLog: boolean;
-  private _console: IConsole;
+export class CwLoggingService {
+  constructor(private envService: CwEnvService, @Inject(CONSOLE_TOKEN) private console: IConsole) {}
 
-  constructor(envService: EnvService, @Inject(CONSOLE_TOKEN) console: IConsole) {
-    this._shouldLog = envService.isDevelopment;
-    this._console = console;
-  }
-
-  log(messages: Array<ILoggingMessage>, groupTitle?: string): void {
-    if (this._shouldLog) {
+  public log(messages: Array<ILoggingMessage>, groupTitle?: string): void {
+    if (this.envService.isDevelopment) {
       if (groupTitle) {
         this._wrapIntoGroup(groupTitle, () => {
           this._logMessages(messages);
@@ -36,21 +30,21 @@ export class LoggingService {
   }
 
   private _wrapIntoGroup(groupTitle: string, log: () => void): void {
-    this._console.group(groupTitle);
+    this.console.group(groupTitle);
     log();
-    this._console.groupEnd();
+    this.console.groupEnd();
   }
 
   private _getLoggingMethod(type: LoggingMessageTypes): Function {
     switch (type) {
       case (LoggingMessageTypes.LOG):
-        return this._console.log;
+        return this.console.log;
       case (LoggingMessageTypes.INFO):
-        return this._console.info;
+        return this.console.info;
       case (LoggingMessageTypes.WARN):
-        return this._console.warn;
+        return this.console.warn;
       case (LoggingMessageTypes.ERROR):
-        return this._console.error;
+        return this.console.error;
     }
   }
 }

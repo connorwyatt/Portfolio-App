@@ -5,33 +5,23 @@ import {LoggingMessageTypes} from '../enums/LoggingMessageTypes';
 import {JSONAPICollectionResponse, JSONAPIModelResponse, JSONAPIResourceIdentifierObject} from '../interfaces/JSONAPI';
 import {ENTITIES_CONSTANT_TOKEN} from '../tokens/ENTITIES_CONSTANT.token';
 import {REFLECTIVE_INJECTOR_TOKEN} from '../tokens/REFLECTIVE_INJECTOR.token';
-import {LoggingService} from './Logging.service';
+import {CwLoggingService} from './CwLogging.service';
 
 @Injectable()
-export class ModelService {
-  private _injector: Injector;
-  private _ReflectiveInjector: typeof ReflectiveInjector;
-  private _ENTITIES: typeof ENTITIES_CONSTANT;
-  private _loggingService: LoggingService;
-
+export class CwModelService {
   constructor(
-      injector: Injector,
-      @Inject(REFLECTIVE_INJECTOR_TOKEN) reflectiveInjector: typeof ReflectiveInjector,
-      @Inject(ENTITIES_CONSTANT_TOKEN) entitiesConstant: typeof ENTITIES_CONSTANT,
-      loggingService: LoggingService) {
-    this._injector = injector;
-    this._ReflectiveInjector = reflectiveInjector;
-    this._ENTITIES = entitiesConstant;
-    this._loggingService = loggingService;
-  }
+      private injector: Injector,
+      @Inject(REFLECTIVE_INJECTOR_TOKEN) private reflectiveInjector: typeof ReflectiveInjector,
+      @Inject(ENTITIES_CONSTANT_TOKEN) private EntitiesConstant: typeof ENTITIES_CONSTANT,
+      private loggingService: CwLoggingService) {}
 
-  createModelFromJSONAPI(response: JSONAPIModelResponse<Object>): BaseEntity {
+  public createModelFromJSONAPI(response: JSONAPIModelResponse<Object>): BaseEntity {
     const resource = response.data;
 
     return this._getEntity(resource);
   }
 
-  createCollectionFromJSONAPI(response: JSONAPICollectionResponse<Object>): BaseEntity[] {
+  public createCollectionFromJSONAPI(response: JSONAPICollectionResponse<Object>): BaseEntity[] {
     return response.data.map((resource) => {
       return this._getEntity(resource);
     });
@@ -39,10 +29,10 @@ export class ModelService {
 
   private _getEntity(resource: JSONAPIResourceIdentifierObject<Object>): BaseEntity {
     const type: string = resource.type;
-    let EntityToken: typeof BaseEntity = this._ENTITIES[type];
+    let EntityToken: typeof BaseEntity = this.EntitiesConstant[type];
 
     if (!EntityToken) {
-      this._loggingService.log(
+      this.loggingService.log(
         [
           {
             type: LoggingMessageTypes.WARN,
@@ -56,12 +46,12 @@ export class ModelService {
         ],
         'No Entity Defined');
 
-              EntityToken = this._ENTITIES.defaultEntity;
+              EntityToken = this.EntitiesConstant.defaultEntity;
     }
 
-    const injector = this._ReflectiveInjector.resolveAndCreate([EntityToken], this._injector);
+    const injector = this.reflectiveInjector.resolveAndCreate([EntityToken], this.injector);
 
-    const entity = <BaseEntity>injector.resolveAndInstantiate(EntityToken);
+    const entity = injector.resolveAndInstantiate(EntityToken) as BaseEntity;
     entity.initialise(resource);
 
     return entity;

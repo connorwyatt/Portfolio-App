@@ -1,21 +1,11 @@
-export class EnvService {
-  get isDevelopment(): boolean {
-    return this._env === 'DEVELOPMENT';
+export class CwEnvService {
+  public get isDevelopment(): boolean {
+    return this.env === 'DEVELOPMENT';
   };
 
-  get isProduction(): boolean {
-    return this._env === 'PRODUCTION';
+  public get isProduction(): boolean {
+    return this.env === 'PRODUCTION';
   };
 
-  get apiBasePath(): string {
-    return this._apiBasePath;
-  };
-
-  private _env: string;
-  private _apiBasePath: string;
-
-  constructor(env: string, apiBasePath: string) {
-    this._env = env;
-    this._apiBasePath = apiBasePath;
-  }
+  constructor(private env: string, readonly apiBasePath: string) {}
 }

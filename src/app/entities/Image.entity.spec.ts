@@ -1,7 +1,7 @@
 import {Http, ResponseContentType} from '@angular/http';
 import {Subject} from 'rxjs';
 import {HttpMock} from '../mocks/Http.mock';
-import {FileService} from '../services/File.service';
+import {CwFileService} from '../services';
 import {Image} from './Image.entity';
 
 import Spy = jasmine.Spy;
@@ -20,7 +20,7 @@ describe('ImageEntity', () => {
 
     fileServiceMock = {readFile: jasmine.createSpy('readFile').and.returnValue(readFileObservable)};
 
-    image = new Image(<Http>httpMock, <FileService>fileServiceMock);
+    image = new Image(<Http>httpMock, <CwFileService>fileServiceMock);
   });
 
   it('should be defined', () => {
