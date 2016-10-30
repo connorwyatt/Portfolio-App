@@ -2,7 +2,7 @@ import {Directive, ElementRef, EventEmitter, Inject, OnInit, Output} from '@angu
 import * as elementResizeDetectorMaker from 'element-resize-detector';
 import {ElementResizeDetector, ElementResizeDetectorMaker} from 'element-resize-detector';
 
-export interface ElementResizeEvent {
+export interface ICwElementResizeEvent {
   element: HTMLElement;
   width: number;
   height: number;
@@ -10,20 +10,18 @@ export interface ElementResizeEvent {
 
 @Directive({selector: '[cwElementResize]'})
 export class CwElementResizeDirective implements OnInit {
-  @Output() onResize: EventEmitter<ElementResizeEvent> = new EventEmitter<ElementResizeEvent>();
-
-  private element: HTMLElement;
+  @Output()
+  private onResize: EventEmitter<ICwElementResizeEvent> = new EventEmitter<ICwElementResizeEvent>();
   private elementResizeDetector: ElementResizeDetector;
 
   constructor(
-      elementRef: ElementRef,
+      private elementRef: ElementRef,
       @Inject(elementResizeDetectorMaker) elementResizeDetectorMaker: ElementResizeDetectorMaker) {
-    this.element = elementRef.nativeElement;
     this.elementResizeDetector = elementResizeDetectorMaker({strategy: 'scroll'});
   }
 
-  ngOnInit() {
-    this.elementResizeDetector.listenTo(this.element, (element) => {
+  public ngOnInit() {
+    this.elementResizeDetector.listenTo(this.elementRef.nativeElement, (element) => {
       this.onResize.emit({element, width: element.offsetWidth, height: element.offsetHeight});
     });
   }

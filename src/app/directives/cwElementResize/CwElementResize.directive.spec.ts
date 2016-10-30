@@ -3,8 +3,11 @@ import {ElementResizeDetectorMaker} from 'element-resize-detector';
 import {CwElementResizeDirective} from './CwElementResize.directive';
 
 describe('CwElementResizeDirective', () => {
-  let cwElementResize: CwElementResizeDirective, nativeElementMock: any, elementRefMock: any,
-      elementResizeDetectorMakerMock: any, elementResizeDetectorMock: any;
+  let cwElementResize: CwElementResizeDirective;
+  let nativeElementMock: any;
+  let elementRefMock: any;
+  let elementResizeDetectorMakerMock: any;
+  let elementResizeDetectorMock: any;
 
   beforeEach(() => {
     nativeElementMock = {};
@@ -14,7 +17,7 @@ describe('CwElementResizeDirective', () => {
         jasmine.createSpy('elementResizeDetectorMaker').and.returnValue(elementResizeDetectorMock);
 
     cwElementResize = new CwElementResizeDirective(
-        <ElementRef>elementRefMock, <ElementResizeDetectorMaker>elementResizeDetectorMakerMock);
+        elementRefMock as ElementRef, elementResizeDetectorMakerMock as ElementResizeDetectorMaker);
   });
 
   it('should create an element resize detector', () => {
@@ -29,29 +32,6 @@ describe('CwElementResizeDirective', () => {
     it('should listen to the element', () => {
       expect(elementResizeDetectorMock.listenTo)
           .toHaveBeenCalledWith(nativeElementMock, jasmine.any(Function));
-    });
-
-    describe('on resize', () => {
-      let element: any;
-
-      beforeEach(() => {
-        spyOn(cwElementResize.onResize, 'emit');
-
-        const listener: (element: HTMLElement) => void =
-            elementResizeDetectorMock.listenTo.calls.argsFor(0)[1];
-
-        element = {offsetWidth: 20, offsetHeight: 10};
-
-        listener(<HTMLElement>element);
-      });
-
-      it('should emit an onResize event', () => {
-        expect(cwElementResize.onResize.emit).toHaveBeenCalledWith({
-          element,
-          width: element.offsetWidth,
-          height: element.offsetHeight
-        });
-      });
     });
   });
 });

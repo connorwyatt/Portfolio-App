@@ -4,21 +4,21 @@ import {ElementResizeDetector, ElementResizeDetectorMaker} from 'element-resize-
 import {debounce} from 'lodash';
 import {CwTileLayoutChildDirective} from './CwTileLayoutChild.directive';
 
-export interface TileLayoutConfigColumn {
+export interface ICwTileLayoutConfigColumn {
   minWidth: number;
   columns: number;
 }
 
-export interface TileLayoutConfig { padding?: number; }
+export interface ICwTileLayoutConfig { padding?: number; }
 
-const defaultConfig: TileLayoutConfig = {
+const defaultConfig: ICwTileLayoutConfig = {
   padding: 0
 };
 
 @Directive({selector: '[cwTileLayout]'})
 export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnInit {
-  @Input() private tileLayoutConfig: TileLayoutConfig;
-  @Input() private tileLayoutColumns: Array<TileLayoutConfigColumn> = [];
+  @Input() private tileLayoutConfig: ICwTileLayoutConfig;
+  @Input() private tileLayoutColumns: Array<ICwTileLayoutConfigColumn> = [];
   @ContentChildren(CwTileLayoutChildDirective) private tiles: QueryList<CwTileLayoutChildDirective>;
   private nativeElement: HTMLElement;
   private elementResizeDetector: ElementResizeDetector;
@@ -38,20 +38,19 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
     this.debouncedCalculateLayout = debounce(this._calculateLayout, 100, {maxWait: 1000});
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges) {
     if (changes['tileLayoutConfig']) {
-      this.tileLayoutConfig =
-          Object.assign({}, defaultConfig, changes['tileLayoutConfig'].currentValue);
+      this.tileLayoutConfig = Object.assign({}, defaultConfig, this.tileLayoutConfig);
     }
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.elementResizeDetector.listenTo(this.nativeElement, () => {
       this.debouncedCalculateLayout();
     });
   }
 
-  ngAfterContentInit() {
+  public ngAfterContentInit() {
     this.calculateLayout();
 
     this.tiles.changes.subscribe(() => {
@@ -59,7 +58,7 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
     });
   }
 
-  calculateLayout() {
+  public calculateLayout() {
     this.debouncedCalculateLayout();
   }
 
@@ -94,10 +93,10 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
         }, new Array(numberOfColumns).fill(0));
   }
 
-  private getNumberOfColumns(width: number, columns: Array<TileLayoutConfigColumn>): number {
+  private getNumberOfColumns(width: number, columns: Array<ICwTileLayoutConfigColumn>): number {
     return columns
         .reduce(
-            (previousValue: TileLayoutConfigColumn, column: TileLayoutConfigColumn) => {
+            (previousValue: ICwTileLayoutConfigColumn, column: ICwTileLayoutConfigColumn) => {
               if (width >= column.minWidth && column.minWidth > previousValue.minWidth) {
                 return column;
               }

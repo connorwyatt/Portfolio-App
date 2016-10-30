@@ -5,8 +5,9 @@ import {CwIconService} from '../../services/CwIcon.service';
 export class CwIconDirective implements OnChanges {
   @Input() private cwIcon: string;
 
-  constructor(private iconService: CwIconService, private elementRef: ElementRef,
-              private renderer: Renderer) {}
+  constructor(
+      private iconService: CwIconService, private elementRef: ElementRef,
+      private renderer: Renderer) {}
 
   public ngOnChanges(changes: SimpleChanges) {
     if (changes['cwIcon']) {
