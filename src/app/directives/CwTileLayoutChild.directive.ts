@@ -1,9 +1,7 @@
 import {Directive, ElementRef, forwardRef, Inject, OnInit} from '@angular/core';
 import * as elementResizeDetectorMaker from 'element-resize-detector';
 import {ElementResizeDetector, ElementResizeDetectorMaker} from 'element-resize-detector';
-
 import {IPosition} from '../interfaces/IPosition';
-
 import {CwTileLayoutDirective} from './CwTileLayout.directive';
 
 @Directive({selector: '[cwTileLayoutChild]'})

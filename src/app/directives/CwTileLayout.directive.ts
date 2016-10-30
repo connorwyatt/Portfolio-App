@@ -2,7 +2,6 @@ import {AfterContentInit, ContentChildren, Directive, ElementRef, HostBinding, I
 import * as elementResizeDetectorMaker from 'element-resize-detector';
 import {ElementResizeDetector, ElementResizeDetectorMaker} from 'element-resize-detector';
 import {debounce} from 'lodash';
-
 import {CwTileLayoutChildDirective} from './CwTileLayoutChild.directive';
 
 export interface TileLayoutConfigColumn {

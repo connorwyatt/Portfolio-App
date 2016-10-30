@@ -4,10 +4,12 @@ import {BrowserModule} from '@angular/platform-browser';
 import {UIRouterModule} from 'ui-router-ng2';
 import {CwButtonComponent, CwImageCardComponent} from './components';
 import {CwElementResizeDirective} from './directives/CwElementResize.directive';
+import {CwIconDirective} from './directives/cwIcon/CwIcon.directive';
 import {CwTileLayoutDirective} from './directives/CwTileLayout.directive';
 import {CwTileLayoutChildDirective} from './directives/CwTileLayoutChild.directive';
 import {CONSOLE_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER, ENTITIES_CONSTANT_PROVIDER, ENV_SERVICE_PROVIDER, FILE_READER_PROVIDER, REFLECTIVE_INJECTOR_PROVIDER, TITLES_CONSTANT_PROVIDER} from './providers';
 import {APIService} from './services/API.service';
+import {CwIconService} from './services/CwIcon.service';
 import {FileService} from './services/File.service';
 import {LoggingService} from './services/Logging.service';
 import {ModelService} from './services/Model.service';
@@ -30,12 +32,12 @@ import {UIRouterConfig} from './states/UIRouter.config';
   declarations: [
     CwAppComponent, CwGalleriesComponent, CwGalleryComponent, CwImageComponent, CwNotFoundComponent,
     CwHeaderComponent, CwImageCardComponent, CwElementResizeDirective, CwTileLayoutDirective,
-    CwTileLayoutChildDirective, CwButtonComponent
+    CwTileLayoutChildDirective, CwButtonComponent, CwIconDirective
   ],
   providers: [
-    APIService, ModelService, TitleService, FileService, LoggingService, ENV_SERVICE_PROVIDER,
-    TITLES_CONSTANT_PROVIDER, ENTITIES_CONSTANT_PROVIDER, CONSOLE_PROVIDER, FILE_READER_PROVIDER,
-    REFLECTIVE_INJECTOR_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER
+    APIService, ModelService, TitleService, FileService, LoggingService, CwIconService,
+    ENV_SERVICE_PROVIDER, TITLES_CONSTANT_PROVIDER, ENTITIES_CONSTANT_PROVIDER, CONSOLE_PROVIDER,
+    FILE_READER_PROVIDER, REFLECTIVE_INJECTOR_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER
   ],
   bootstrap: [CwAppComponent]
 })

@@ -1,0 +1,26 @@
+@import './colors';
+
+$icon-themes: ();
+
+@mixin icon-styles($color-list) {
+  @for $i from 1 through length($color-list) {
+    $color: nth($color-list, $i);
+    $cmp: '.cwIcon';
+
+    /deep/#{$cmp}::content {
+      #{$cmp}Element#{$i}Fill {
+        fill: $color;
+      }
+
+      #{$cmp}Element#{$i}Stroke::content {
+        stroke: $color;
+      }
+    }
+  }
+}
+
+@mixin icon-theme($theme-name) {
+  $theme: map-get($icon-themes, $theme-name);
+
+  @include icon-styles($theme);
+}
