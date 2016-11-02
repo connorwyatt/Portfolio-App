@@ -1,7 +1,7 @@
 import {AfterContentInit, ContentChildren, Directive, ElementRef, HostBinding, Inject, Input, OnChanges, OnInit, QueryList, SimpleChanges} from '@angular/core';
 import * as elementResizeDetectorMaker from 'element-resize-detector';
 import {ElementResizeDetector, ElementResizeDetectorMaker} from 'element-resize-detector';
-import {debounce} from 'lodash';
+import {throttle} from 'lodash';
 import {CwTileLayoutChildDirective} from './CwTileLayoutChild.directive';
 
 export interface ICwTileLayoutConfigColumn {
@@ -22,7 +22,7 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
   @ContentChildren(CwTileLayoutChildDirective) private tiles: QueryList<CwTileLayoutChildDirective>;
   private nativeElement: HTMLElement;
   private elementResizeDetector: ElementResizeDetector;
-  private debouncedCalculateLayout: Function;
+  private throttledCalculateLayout: Function;
   private columnHeights: Array<number>;
 
   @HostBinding('style.position') private get position(){return 'relative'};
@@ -35,7 +35,7 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
       @Inject(elementResizeDetectorMaker) elementResizeDetectorMaker: ElementResizeDetectorMaker) {
     this.nativeElement = elementRef.nativeElement;
     this.elementResizeDetector = elementResizeDetectorMaker({strategy: 'scroll'});
-    this.debouncedCalculateLayout = debounce(this._calculateLayout, 100, {maxWait: 1000});
+    this.throttledCalculateLayout = throttle(this._calculateLayout, 100, {trailing: true});
   }
 
   public ngOnChanges(changes: SimpleChanges) {
@@ -46,7 +46,7 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
 
   public ngOnInit() {
     this.elementResizeDetector.listenTo(this.nativeElement, () => {
-      this.debouncedCalculateLayout();
+      this.throttledCalculateLayout();
     });
   }
 
@@ -54,12 +54,12 @@ export class CwTileLayoutDirective implements OnChanges, AfterContentInit, OnIni
     this.calculateLayout();
 
     this.tiles.changes.subscribe(() => {
-      this.debouncedCalculateLayout();
+      this.throttledCalculateLayout();
     });
   }
 
   public calculateLayout() {
-    this.debouncedCalculateLayout();
+    this.throttledCalculateLayout();
   }
 
   private _calculateLayout(): void {
