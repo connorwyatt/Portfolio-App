@@ -126,8 +126,8 @@ describe('CwModelService', () => {
       beforeEach(() => {
         response = {data: [{type: 'testEntity'}, {type: 'testEntity2'}]};
 
-        result =
-            modelService.createCollectionFromJSONAPI(response as IJSONAPICollectionResponse<Object>);
+        result = modelService.createCollectionFromJSONAPI(
+            response as IJSONAPICollectionResponse<Object>);
       });
 
       it('should resolve and create new injectors', () => {
@@ -161,8 +161,8 @@ describe('CwModelService', () => {
       beforeEach(() => {
         response = {data: [{type: 'entityDoesNotExist'}, {type: 'entityDoesNotExist2'}]};
 
-        result =
-            modelService.createCollectionFromJSONAPI(response as IJSONAPICollectionResponse<Object>);
+        result = modelService.createCollectionFromJSONAPI(
+            response as IJSONAPICollectionResponse<Object>);
       });
 
       it('should resolve and create new injectors', () => {

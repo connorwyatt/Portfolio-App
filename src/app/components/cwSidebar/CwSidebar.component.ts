@@ -1,5 +1,4 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
-import {CwSidebarService} from '../../services';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'cw-sidebar',
@@ -7,13 +6,4 @@ import {CwSidebarService} from '../../services';
   styles: [require('./CwSidebar.component.scss')]
 })
 export class CwSidebarComponent {
-  @ViewChild('backdrop') private backdropElement: ElementRef;
-
-  constructor(private sidebarService: CwSidebarService) {}
-
-  public close($event: MouseEvent) {
-    if ($event.target === this.backdropElement.nativeElement) {
-      this.sidebarService.closeSidebar();
-    }
-  }
 }

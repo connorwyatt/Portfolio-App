@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class CwSidebarService {
-  public get isOpen(): boolean { return this.open; };
+  public get isOpen(): boolean {
+    return this.open;
+  }
 
   private open: boolean = false;
 

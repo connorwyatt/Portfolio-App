@@ -5,7 +5,7 @@ import {UIRouterModule} from 'ui-router-ng2';
 import {CwButtonComponent, CwImageCardComponent, CwSidebarComponent} from './components';
 import {CwElementResizeDirective, CwIconDirective, CwTileLayoutChildDirective, CwTileLayoutDirective} from './directives';
 import {CONSOLE_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER, ENTITIES_CONSTANT_PROVIDER, ENV_SERVICE_PROVIDER, FILE_READER_PROVIDER, REFLECTIVE_INJECTOR_PROVIDER, TITLES_CONSTANT_PROVIDER} from './providers';
-import {CwAPIService, CwFileService, CwIconService, CwLoggingService, CwModelService, CwTitleService, CwSidebarService} from './services';
+import {CwAPIService, CwFileService, CwIconService, CwLoggingService, CwModelService, CwSidebarService, CwTitleService} from './services';
 import {CwAppComponent} from './states/CwApp.component';
 import {CwAppStates} from './states/CwApp.states';
 import {CwGalleriesComponent} from './states/cwGalleries/CwGalleries.component';
@@ -27,9 +27,10 @@ import {UIRouterConfig} from './states/UIRouter.config';
     CwTileLayoutChildDirective, CwButtonComponent, CwIconDirective, CwSidebarComponent
   ],
   providers: [
-    CwAPIService, CwModelService, CwTitleService, CwFileService, CwLoggingService, CwIconService, CwSidebarService,
-    ENV_SERVICE_PROVIDER, TITLES_CONSTANT_PROVIDER, ENTITIES_CONSTANT_PROVIDER, CONSOLE_PROVIDER,
-    FILE_READER_PROVIDER, REFLECTIVE_INJECTOR_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER
+    CwAPIService, CwModelService, CwTitleService, CwFileService, CwLoggingService, CwIconService,
+    CwSidebarService, ENV_SERVICE_PROVIDER, TITLES_CONSTANT_PROVIDER, ENTITIES_CONSTANT_PROVIDER,
+    CONSOLE_PROVIDER, FILE_READER_PROVIDER, REFLECTIVE_INJECTOR_PROVIDER,
+    ELEMENT_RESIZE_DETECTOR_PROVIDER
   ],
   bootstrap: [CwAppComponent]
 })
