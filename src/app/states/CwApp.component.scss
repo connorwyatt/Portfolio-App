@@ -2,6 +2,7 @@
 @import 'CwApp.mixins';
 
 .headerView {
+  box-shadow: 0 2px 5px $color-shadow;
   display: block;
   height: $headerView-height;
   left: 0;
@@ -36,7 +37,7 @@
 
 .sidebar {
   bottom: 0;
-  box-shadow: 0 2px 2px $color-shadow;
+  box-shadow: 0 2px 5px $color-shadow;
   left: 0;
   max-width: $grid-size * 50;
   position: fixed;

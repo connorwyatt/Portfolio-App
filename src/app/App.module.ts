@@ -19,7 +19,7 @@ import {UIRouterConfig} from './states/UIRouter.config';
   imports: [
     BrowserModule, HttpModule,
     UIRouterModule.forRoot(
-      {states: CwAppStates, otherwise: 'not-found', configClass: UIRouterConfig})
+        {states: CwAppStates, otherwise: 'not-found', configClass: UIRouterConfig})
   ],
   declarations: [
     CwAppComponent, CwGalleriesComponent, CwGalleryComponent, CwImageComponent, CwNotFoundComponent,
