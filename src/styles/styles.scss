@@ -9,10 +9,14 @@
 html {
   color: $color-font-primary;
   font-family: Roboto, sans-serif;
+  min-height: 100%;
 }
 
 body {
-  background-color: $color-background;
+  background: radial-gradient(circle at 80% 10%, transparentize($color-picton-blue, .5), transparent),
+  radial-gradient(circle at 80% 50%, transparentize($color-mystic, .5), transparent),
+  radial-gradient(circle at 20% 80%, transparentize($color-atoll, .5), transparent),
+  radial-gradient(circle at 10% 10%, transparentize($color-aqua-island, .5), transparent);
 }
 
 a {
