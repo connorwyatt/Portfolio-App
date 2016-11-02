@@ -23,3 +23,16 @@ a {
   color: $color-font-primary;
   text-decoration: none;
 }
+
+button {
+  background: none;
+  border: none;
+  color: currentColor;
+  font: inherit;
+  outline: none;
+  padding: 0;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+}

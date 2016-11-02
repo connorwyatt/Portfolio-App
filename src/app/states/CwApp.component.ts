@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {CwSidebarService} from '../services';
 
 @Component({
   selector: 'cw-app',
@@ -6,4 +7,7 @@ import {Component} from '@angular/core';
   styles: [require('./CwApp.component.scss')]
 })
 export class CwAppComponent {
+  public get showSidebar(): boolean { return this.sidebarService.isOpen; };
+
+  constructor(private sidebarService: CwSidebarService) {}
 }
