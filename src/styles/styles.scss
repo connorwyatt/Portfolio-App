@@ -7,16 +7,22 @@
 }
 
 html {
+  box-sizing: border-box;
   color: $color-font-primary;
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: $font-weight-light;
   min-height: 100%;
 }
 
 body {
-  background: radial-gradient(circle at 80% 10%, transparentize($color-picton-blue, .5), transparent),
-  radial-gradient(circle at 80% 50%, transparentize($color-mystic, .5), transparent),
-  radial-gradient(circle at 20% 80%, transparentize($color-atoll, .5), transparent),
-  radial-gradient(circle at 10% 10%, transparentize($color-aqua-island, .5), transparent);
+  background: radial-gradient(circle at 80% 10%, transparentize($color-picton-blue, 0.5), transparent),
+  radial-gradient(circle at 80% 50%, transparentize($color-mystic, 0.5), transparent),
+  radial-gradient(circle at 20% 80%, transparentize($color-atoll, 0.5), transparent),
+  radial-gradient(circle at 10% 10%, transparentize($color-aqua-island, 0.5), transparent);
+}
+
+* {
+  box-sizing: inherit;
 }
 
 a {

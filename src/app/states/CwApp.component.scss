@@ -1,7 +1,5 @@
 @import '../../styles/theme';
-
-$headerView-height: $grid-size * 6;
-$headerView-height-tablet: $grid-size * 8;
+@import 'CwApp.mixins';
 
 .headerView {
   display: block;
@@ -38,7 +36,7 @@ $headerView-height-tablet: $grid-size * 8;
 
 .sidebar {
   bottom: 0;
-  box-shadow: 0 2px 5px transparentize($color-black, 0.5);
+  box-shadow: 0 2px 2px $color-shadow;
   left: 0;
   max-width: $grid-size * 50;
   position: fixed;

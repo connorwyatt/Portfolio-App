@@ -6,7 +6,7 @@
 
 .container {
   align-items: center;
-  background-color: transparentize($color-header-background, .02);
+  background-color: transparentize($color-header-background, 0.02);
   box-shadow: 0 2px 2px $color-shadow;
   display: flex;
   height: 100%;
@@ -18,7 +18,7 @@
   height: $grid-size * 3;
   width: $grid-size * 3;
 
-  @media ($media-ld) {
+  @media ($media-tablet) {
     height: $grid-size * 4;
     width: $grid-size * 4;
   }

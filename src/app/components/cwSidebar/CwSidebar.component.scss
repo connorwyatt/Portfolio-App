@@ -1,7 +1,37 @@
 @import '../../../styles/theme';
+@import '../../states/CwApp.mixins';
 
 .container {
-  background-color: $color-white;
+  background-color: $color-header-background;
   height: 100%;
   width: 100%;
+}
+
+.search {
+  align-items: center;
+  background-color: $color-eastern-blue;
+  color: $color-font-inverted-primary;
+  display: flex;
+  height: $headerView-height;
+  padding: 0 $grid-size * 2;
+  width: 100%;
+
+  @media ($media-tablet) {
+    height: $headerView-height-tablet;
+  }
+
+  &Text {
+    flex: 1 1 0%;
+  }
+
+  &Icon {
+    @include icon-styles($color-font-inverted-primary);
+    height: $grid-size * 3;
+    width: $grid-size * 3;
+
+    @media ($media-tablet) {
+      height: $grid-size * 4;
+      width: $grid-size * 4;
+    }
+  }
 }
