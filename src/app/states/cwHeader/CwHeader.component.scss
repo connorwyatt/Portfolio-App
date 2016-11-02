@@ -5,7 +5,21 @@
 }
 
 .container {
-  background-color: transparentize($color-header-background, .02);
+  align-items: center;
+  background-color: transparentize($color-header-background, 0.02);
   box-shadow: 0 2px 2px $color-shadow;
+  display: flex;
   height: 100%;
+  padding: 0 $grid-size * 2;
+}
+
+.menuIcon {
+  @include icon-styles($color-font-primary);
+  height: $grid-size * 3;
+  width: $grid-size * 3;
+
+  @media ($media-tablet) {
+    height: $grid-size * 4;
+    width: $grid-size * 4;
+  }
 }

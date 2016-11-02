@@ -6,23 +6,23 @@ $color-picton-blue: #51D9EE;
 $color-mystic: #eaf8fa;
 $color-atoll: #0C6877;
 $color-aqua-island: #94d1d9;
+$color-eastern-blue: #27a7bb;
 
-$color-font-primary: transparentize($color-black, .13);
-$color-font-secondary: transparentize($color-black, .46);
-$color-font-disabled: transparentize($color-black, .62);
+$color-font-primary: transparentize($color-black, 0.13);
+$color-font-secondary: transparentize($color-black, 0.46);
+$color-font-disabled: transparentize($color-black, 0.62);
 $color-font-hint: $color-font-disabled;
 $color-font-icon: $color-font-disabled;
-$color-font-dividers: transparentize($color-black, .88);
+$color-font-dividers: transparentize($color-black, 0.88);
 
 $color-font-inverted-primary: transparentize($color-white, 0);
-$color-font-inverted-secondary: transparentize($color-white, .3);
-$color-font-inverted-disabled: transparentize($color-white, .5);
+$color-font-inverted-secondary: transparentize($color-white, 0.3);
+$color-font-inverted-disabled: transparentize($color-white, 0.5);
 $color-font-inverted-hint: $color-font-inverted-disabled;
 $color-font-inverted-icon: $color-font-inverted-disabled;
-$color-font-inverted-dividers: transparentize($color-white, .88);
+$color-font-inverted-dividers: transparentize($color-white, 0.88);
 
-$color-shadow: transparentize($color-black, .9);
+$color-shadow: transparentize($color-black, 0.9);
 
-$color-background: $color-grey;
-$color-header-background: $color-white;
+$color-header-background: transparentize($color-white, 0.02);
 $color-card: $color-white;

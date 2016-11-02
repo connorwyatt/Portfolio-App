@@ -1,2 +1,11 @@
-<ui-view name="header" class="headerView"></ui-view>
-<ui-view name="main" class="mainView"></ui-view>
+<ui-view name="header"
+         class="headerView"></ui-view>
+<ui-view name="main"
+         class="mainView"></ui-view>
+<div class="sidebarBackdrop"
+     [@fade]
+     (click)="closeSidebar()"
+     *ngIf="showSidebar"></div>
+<cw-sidebar class="sidebar"
+            [@flyLeft]
+            *ngIf="showSidebar"></cw-sidebar>
