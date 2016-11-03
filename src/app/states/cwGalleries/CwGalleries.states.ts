@@ -10,7 +10,7 @@ export const CwGalleriesState: Ng2StateDeclaration = {
   name: 'galleries',
   parent: 'app',
   url: '^/galleries',
-  views: {'header@': {component: CwHeaderComponent}, 'main@': {component: CwGalleriesComponent}},
+  views: {'main@': {component: CwGalleriesComponent}},
   resolve: [{
     token: 'galleries',
     deps: [CwAPIService],

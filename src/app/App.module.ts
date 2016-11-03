@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {UIRouterModule} from 'ui-router-ng2';
+
 import {CwButtonComponent, CwImageCardComponent, CwSidebarComponent} from './components';
 import {CwElementResizeDirective, CwIconDirective, CwTileLayoutChildDirective, CwTileLayoutDirective} from './directives';
 import {CONSOLE_PROVIDER, ELEMENT_RESIZE_DETECTOR_PROVIDER, ENTITIES_CONSTANT_PROVIDER, ENV_SERVICE_PROVIDER, FILE_READER_PROVIDER, REFLECTIVE_INJECTOR_PROVIDER, TITLES_CONSTANT_PROVIDER} from './providers';
@@ -12,6 +13,7 @@ import {CwGalleriesComponent} from './states/cwGalleries/CwGalleries.component';
 import {CwGalleryComponent} from './states/cwGalleries/cwGallery/CwGallery.component';
 import {CwImageComponent} from './states/cwGalleries/cwGallery/cwImage/CwImage.component';
 import {CwHeaderComponent} from './states/cwHeader/CwHeader.component';
+import {CwLoginComponent} from './states/cwLogin/CwLogin.component';
 import {CwNotFoundComponent} from './states/cwNotFound/CwNotFound.component';
 import {UIRouterConfig} from './states/UIRouter.config';
 
@@ -23,8 +25,9 @@ import {UIRouterConfig} from './states/UIRouter.config';
   ],
   declarations: [
     CwAppComponent, CwGalleriesComponent, CwGalleryComponent, CwImageComponent, CwNotFoundComponent,
-    CwHeaderComponent, CwImageCardComponent, CwElementResizeDirective, CwTileLayoutDirective,
-    CwTileLayoutChildDirective, CwButtonComponent, CwIconDirective, CwSidebarComponent
+    CwLoginComponent, CwHeaderComponent, CwImageCardComponent, CwElementResizeDirective,
+    CwTileLayoutDirective, CwTileLayoutChildDirective, CwButtonComponent, CwIconDirective,
+    CwSidebarComponent
   ],
   providers: [
     CwAPIService, CwModelService, CwTitleService, CwFileService, CwLoggingService, CwIconService,
