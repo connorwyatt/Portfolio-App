@@ -4,14 +4,29 @@
   background-color: $color-card;
 }
 
+.imageContainer {
+  position: relative;
+}
+
 .image {
+  display: block;
   width: 100%;
+}
+
+.title {
+  @include font-heading;
+  background-color: transparentize($color-black, 0.3);
+  bottom: 0;
+  color: $color-font-inverted-primary;
+  left: 0;
+  overflow: hidden;
+  padding: $grid-size;
+  position: absolute;
+  right: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .informationContainer {
   padding: 10px;
-}
-
-.description {
-  margin-top: 10px;
 }

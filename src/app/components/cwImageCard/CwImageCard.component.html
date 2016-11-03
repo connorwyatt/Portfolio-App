@@ -2,12 +2,11 @@
   <div class="imageContainer">
     <img class="image"
          [attr.src]="(image.getMediumImage() | async)?.base64"/>
-  </div>
-  <div class="informationContainer">
     <h3 class="title"
         *ngIf="image.attributes.name">{{ image.attributes.name }}</h3>
-    <p class="description"
-       *ngIf="image.attributes.description">{{ image.attributes.description }}</p>
+  </div>
+  <div class="informationContainer">
+    <p *ngIf="image.attributes.description">{{ image.attributes.description }}</p>
     <cw-button modifier="primary"
                state="image"
                [stateParams]="{ imageId: image.id }"
