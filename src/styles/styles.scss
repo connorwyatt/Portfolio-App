@@ -7,10 +7,12 @@
 }
 
 html {
+  @include font-regular;
   box-sizing: border-box;
   color: $color-font-primary;
-  font-family: 'Roboto', sans-serif;
-  font-weight: $font-weight-light;
+  font-family: $font-family;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   min-height: 100%;
 }
 

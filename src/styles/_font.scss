@@ -1,4 +1,19 @@
-$font-family: Roboto, sans-serif;
+@import 'layout';
+
+$font-family: 'Roboto', sans-serif;
 
 $font-weight-light: 300;
 $font-weight-regular: 400;
+
+$font-size-large: $baseline-grid-size * 5;
+$font-size-regular: $baseline-grid-size * 3;
+
+@mixin font-heading() {
+  font-size: $font-size-large;
+  font-weight: $font-weight-light;
+}
+
+@mixin font-regular() {
+  font-size: $font-size-regular;
+  font-weight: $font-weight-light;
+}
