@@ -16,6 +16,9 @@
   },
   "author": "Connor Wyatt <connorwyatt1@gmail.com>",
   "license": "ISC",
+  "engines": {
+    "node": "6.6.0"
+  },
   "dependencies": {
     "@angular/common": "^2.0.0",
     "@angular/compiler": "^2.0.0",
